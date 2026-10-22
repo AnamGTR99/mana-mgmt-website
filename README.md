@@ -1,60 +1,21 @@
-# MANA — website (v1)
+# MANA website (v2)
 
-One-page site for **mana-mgmt.com**. Built to the locked MANA brand system
-(IKB `#002FA7` · bone `#F5F2EA` · Anton / Archivo / IBM Plex Mono · the woven four-ring mark).
-See `Mesh/MANAMGMT/(SOP) Branding.md` for the brand rules this follows.
+Source for **www.mana-mgmt.com**. Static pages built by a small Python script and served by Vercel.
 
-## What's here
-
-| File | What it is |
+| Path | What it is |
 |---|---|
-| `index.html` | The entire site — self-contained (inline CSS + JS, no build step). |
-| `favicon.svg` | The mark on an IKB tile, for the browser tab. |
+| `tools/content.py` | All copy and facts: creators, case studies, brands, FAQ. Figures only from the vault's Facts files and media kits. **No prices.** |
+| `tools/build.py` | Turns content into `public/`: pages, CSS, JS, `robots.txt`, `sitemap.xml`, `llms.txt`, structured data |
+| `src/assets/` | Photos, logo files and the share image |
+| `public/` | The built site that Vercel serves. Never edit by hand; rebuild instead. |
+| `vercel.json` | Serve `public/`, clean URLs, caching |
 
-Sections: hero (the mark literally weaves itself in on load) → what-we-do + stats →
-roster (Hugo Zbor, Kevin Chiang) → brand marquee → "Work With Us" contact form → footer.
-All content is real and pulled from the vault. Fonts load from Google Fonts, so keep online.
+```sh
+python3 tools/build.py                      # rebuild public/
+cd public && python3 -m http.server 8765    # preview at http://localhost:8765
+```
 
-## View it locally
+Design follows the vault's `MANAMGMT/(SOP) Design Rules.md` (neutral, MANA blue about 10%, Archivo, sentence case); the logo follows `(SOP) Branding.md`.
+Leads come in through the form (Formspree `mvzekrgq`), which emails shei@mana-mgmt.com.
 
-Just open `index.html` in a browser (double-click). Everything works offline except the
-web fonts and the form submission.
-
-## ⚠️ Before it goes live — connect the contact form (2 min)
-
-The form is wired to **Formspree** but needs your form ID:
-
-1. Go to https://formspree.io → sign up (free tier is fine) with **shei@mana-mgmt.com**.
-2. Create a new form → copy its ID (looks like `xdorwknp` — the bit after `/f/`).
-3. In `index.html`, find this line (near the bottom, in the `<script>`):
-   ```js
-   const FORMSPREE_ID = "REPLACE_WITH_FORMSPREE_ID";
-   ```
-   Replace `REPLACE_WITH_FORMSPREE_ID` with your ID and save.
-
-Until then the form shows a friendly "email us directly" message instead of failing silently.
-Submissions land in your Formspree inbox **and** get emailed to you.
-
-## Going live at mana-mgmt.com
-
-The site is a single static file — it can be hosted anywhere:
-
-- **Fastest / free:** drag the `mana-mgmt` folder onto **Netlify Drop** (app.netlify.com/drop),
-  or push to a GitHub repo and enable **Cloudflare Pages / GitHub Pages** — then point the
-  `mana-mgmt.com` DNS at it (the host gives you the records). Gets you real **HTTPS**.
-- **On the existing VPS** (`170.64.167.205`): drop `index.html` + `favicon.svg` into a new
-  nginx route and point the domain's A record at the box — see
-  `~/Downloads/(SOP) VPS Deployment — for Claude.md`. Note the VPS is **HTTP-only**; a
-  static host (Netlify/Cloudflare) is the better home for the public domain because it's HTTPS.
-
-Once the site is live on HTTPS, also move the email-signature banner image there
-(currently `http://170.64.167.205/mana-sig.png`) — see `(SOP) Branding.md` §6.
-
-## Editing
-
-- **Brand facts** (creators, stats, brands): all in the HTML markup — search for `HUGO ZBOR`,
-  `KEVIN CHIANG`, or the `marquee` blocks. Keep the brand-wall names to real, closed partners.
-- **Colours / type:** the `:root` CSS variables at the top.
-- **Motion** respects `prefers-reduced-motion` (animations off for users who ask for that).
-
-*v1 — 2026-07-17. No logo animation beyond the hero weave, per (SOP) Branding §6 ("Website v1: typographic").*
+Pushing to `main` deploys to production. Work on a branch; merge only on Anam's go.
