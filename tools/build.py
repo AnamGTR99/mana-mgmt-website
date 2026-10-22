@@ -278,7 +278,7 @@ def footer():
 """.format(lk=lockup("#FFFFFF", "#FFFFFF", "#FFFFFF"), blurb=e(C.FOOTER_BLURB), cols="".join(cols), y=datetime.date.today().year)
 
 
-def lead_form():
+def lead_form(need=None):
     opts = "".join('<option value="%s">%s</option>' % (v, e(t)) for v, t in C.NEEDS)
     return """<form class="form" id="lead" novalidate>
 <div class="row2">
@@ -311,9 +311,9 @@ def home():
         stats = "".join("<div><dd>%s</dd><dt>%s</dt></div>" % (e(v), e(k)) for v, k in c["stats"])
         roster.append("""<article class="cr" id="{slug}">
 <div class="ph"><img src="/assets/img/{slug}.webp" alt="{alt}" width="800" height="1000" loading="lazy"></div>
-<div class="bd"><span class="niche">{niche}</span><h3>{name}</h3>
+<div class="bd"><span class="niche">{niche}</span><h3><a href="/creators/{slug}">{name}</a></h3>
 <dl>{stats}</dl>
-<div class="act"><a class="btn btn-s btn-sm" href="#contact" data-need="kit-{key}">Get {first}’s media kit</a><a class="ig" href="{ig}" rel="noopener">{handle} on Instagram</a></div>
+<div class="act"><a class="btn btn-s btn-sm" href="#contact" data-need="kit-{key}">Get {first}’s media kit</a><a class="ig" href="/creators/{slug}">View profile</a></div>
 </div></article>""".format(slug=c["slug"], alt=e(c["photo_alt"]), niche=e(c["niche"]), name=e(c["name"]), blurb=e(c["blurb"]),
                            stats=stats, key=c["key"], first=e(c["name"].split()[0]), ig=c["instagram"], handle=e(c["handle"])))
     steps = "".join('<div class="st"><h3>%s</h3><p>%s</p></div>' % (e(t), e(b)) for t, b in C.STEPS)
@@ -351,16 +351,11 @@ def home():
 <div class="faq">{faq}</div>
 </div></section>
 
-<section class="contact" id="contact" style="padding-top:0"><div class="wrap">
-<div><h2>{contact_h}</h2><p class="sub">{contact_sub}</p>
-<div class="direct"><a href="mailto:shei@mana-mgmt.com">shei@mana-mgmt.com</a><a href="https://www.instagram.com/manamgmt/" rel="noopener">@manamgmt on Instagram</a></div></div>
-{form}
-</div></section>
-</main>
+{contact}</main>
 """.format(eyebrow=e(h["eyebrow"]), h1=e(h["h1"]), lede=h["lede_html"], trust=e(h["trust"]), hero_mark=hero_mark, marquee=marquee,
            roster_h=e(h["roster_h"]), roster_sub=e(h["roster_sub"]), roster="".join(roster),
            proc_h=e(h["proc_h"]), proc_sub=e(h["proc_sub"]), steps=steps, join_h=e(h["join_h"]), join_p=e(h["join_p"]),
-           faq=faq, contact_h=e(h["contact_h"]), contact_sub=e(h["contact_sub"]), form=lead_form())
+           faq=faq, contact=contact_section(h["contact_h"], h["contact_sub"]).replace('class="contact" id="contact"', 'class="contact" id="contact" style="padding-top:0"'))
     return head(h["title"], h["description"], "/", jsonld_home()) + header() + body + footer()
 
 
@@ -406,6 +401,220 @@ def not_found():
     return h.replace('content="index,follow,max-image-preview:large"', 'content="noindex"') + header() + body + footer()
 
 
+# ---------------------------------------------------------------- interior pages
+INDEXNOW_KEY = "7c3e9a51d84b4f2e9b6a0c1d2e3f4a5b"
+PAGES = []  # (path, priority) for the sitemap, filled by build_pages()
+
+
+def contact_section(h2="Get a media kit", sub="We’ll reply with the media kit, usually within a day.", need=None):
+    return """<section class="contact" id="contact"><div class="wrap">
+<div><h2>{h2}</h2><p class="sub">{sub}</p>
+<div class="direct"><a href="mailto:shei@mana-mgmt.com">shei@mana-mgmt.com</a><a href="https://www.instagram.com/manamgmt/" rel="noopener">@manamgmt on Instagram</a></div></div>
+{form}
+</div></section>
+""".format(h2=e(h2), sub=e(sub), form=lead_form(need))
+
+
+def crumbs(trail):
+    """trail: [(name, path)], last item is the current page."""
+    html = '<nav class="crumbs" aria-label="Breadcrumb">' + ' <span aria-hidden="true">/</span> '.join(
+        ('<a href="%s">%s</a>' % (p, e(n)) if i < len(trail) - 1 else '<span aria-current="page">%s</span>' % e(n))
+        for i, (n, p) in enumerate(trail)) + '</nav>'
+    ld = {"@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": i + 1, "name": n, "item": SITE + p} for i, (n, p) in enumerate(trail)]}
+    return html, ld
+
+
+def faq_block(items, title="Questions"):
+    html = '<section class="pg-sec"><div class="wrap"><h2>%s</h2><div class="faq">%s</div></div></section>' % (
+        e(title), "".join("<details><summary>%s</summary><p>%s</p></details>" % (e(q), e(a)) for q, a in items))
+    ld = {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in items]}
+    return html, ld
+
+
+def page_hero(trail, eyebrow, h1, lede, side=""):
+    ch, cld = crumbs(trail)
+    return """<section class="pg-hero"><div class="wrap">{ch}<div class="pg-grid">
+<div><span class="eyebrow">{eb}</span><h1>{h1}</h1><p class="lede">{lede}</p>
+<div class="cta"><a class="btn btn-p" href="#contact">Get a media kit</a><a class="btn btn-s" href="#contact" data-need="brief">Send a brief</a></div></div>
+{side}</div></div></section>
+""".format(ch=ch, eb=e(eyebrow), h1=e(h1), lede=e(lede), side=side), cld
+
+
+def write_page(path, title, desc, body, graph, og="/assets/og/home.png", priority="0.8"):
+    ld = {"@context": "https://schema.org", "@graph": [org(), {"@type": "WebPage", "@id": SITE + path + "#webpage", "url": SITE + path,
+          "name": title, "description": desc, "isPartOf": {"@type": "WebSite", "@id": SITE + "/#website"}, "dateModified": TODAY,
+          "inLanguage": "en-AU"}] + graph}
+    html = head(title, desc, path, ld, og) + header() + '<main id="main">' + body + "</main>" + footer()
+    out = OUT / (path.strip("/") + ".html")
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(html)
+    PAGES.append((path, priority))
+
+
+def creator_by_key(k):
+    return next(c for c in C.CREATORS if c["key"] == k)
+
+
+def profile_page(key):
+    c, p = creator_by_key(key), C.PROFILES[key]
+    path = "/creators/" + c["slug"]
+    side = '<div class="pg-photo"><img src="/assets/img/%s.webp" alt="%s" width="800" height="1000"></div>' % (c["slug"], e(c["photo_alt"]))
+    hero, cld = page_hero([("Home", "/"), ("Creators", "/creators"), (c["name"], path)], p["eyebrow"], c["name"], p["lede"], side)
+    facts = "".join("<div><dt>%s</dt><dd>%s</dd></div>" % (e(k), e(v)) for k, v in p["facts"])
+    hl = "".join("<li>%s</li>" % e(x) for x in p["highlights"])
+    brands = ('<h3 class="mt">Brands %s has made work for</h3><ul class="chips">%s</ul>' % (e(c["name"].split()[0]), "".join(
+        "<li>%s</li>" % e(b) for b in p["brands"]))) if p["brands"] else ""
+    gal = ""
+    if len(p["gallery"]) > 1:
+        gal = '<section class="pg-sec"><div class="wrap"><h2>Selected work</h2><div class="gal">%s</div></div></section>' % "".join(
+            '<figure><img src="/assets/img/%s" alt="%s, %s by %s" width="640" height="800" loading="lazy"><figcaption><b>%s</b><span>%s</span></figcaption></figure>' % (
+                f, e(b), e(w), e(c["name"]), e(b), e(w)) for f, b, w in p["gallery"])
+    fq, fld = faq_block(p["faq"])
+    body = hero + """<section class="pg-sec"><div class="wrap pg-two">
+<div><h2>At a glance</h2><dl class="facts">{facts}</dl></div>
+<div><h2>Results</h2><ul class="hl">{hl}</ul>{brands}<h3 class="mt">Best for</h3><p class="sub">{fit}</p></div>
+</div></section>
+{gal}{fq}""".format(facts=facts, hl=hl, brands=brands, fit=e(p["fit"]), gal=gal, fq=fq) + contact_section(
+        "Get %s’s media kit" % c["name"].split()[0], "Audience data, past results and options for your campaign. We usually reply within a day.")
+    body = body.replace('<option value="kit-%s">' % key, '<option value="kit-%s" selected>' % key)
+    person_ld = person(c)
+    person_ld["@id"] = SITE + path + "#person"
+    person_ld["url"] = SITE + path
+    graph = [{"@type": "ProfilePage", "@id": SITE + path + "#profile", "url": SITE + path, "mainEntity": {"@id": SITE + path + "#person"}},
+             person_ld, cld, fld]
+    write_page(path, p["title"], p["description"], body, graph, og="/assets/og/%s.png" % c["slug"], priority="0.9")
+
+
+def creators_page():
+    d = C.CREATORS_PAGE
+    hero, cld = page_hero([("Home", "/"), ("Creators", "/creators")], d["eyebrow"], d["h1"], d["lede"])
+    cards = "".join("""<article class="cr"><a class="ph" href="/creators/{slug}"><img src="/assets/img/{slug}.webp" alt="{alt}" width="800" height="1000" loading="lazy"></a>
+<div class="bd"><span class="niche">{niche}</span><h3><a href="/creators/{slug}">{name}</a></h3><p>{blurb}</p>
+<div class="act"><a class="btn btn-s btn-sm" href="/creators/{slug}">View profile</a><a class="ig" href="{ig}" rel="noopener">{handle}</a></div></div></article>""".format(
+        slug=c["slug"], alt=e(c["photo_alt"]), niche=e(c["niche"]), name=e(c["name"]), blurb=e(c["blurb"]), ig=c["instagram"], handle=e(c["handle"]))
+        for c in C.CREATORS)
+    fit = "".join('<div><dt>%s</dt><dd><a href="/creators/%s">%s</a></dd></div>' % (
+        e(k), next(c["slug"] for c in C.CREATORS if c["name"] == v), e(v)) for k, v in d["fit"])
+    fq, fld = faq_block(d["faq"])
+    body = hero + """<section class="pg-sec" style="padding-top:0"><div class="wrap"><div class="roster">{cards}</div></div></section>
+<section class="pg-sec"><div class="wrap"><h2>{fit_h}</h2><dl class="facts wide">{fit}</dl></div></section>{fq}""".format(
+        cards=cards, fit_h=e(d["fit_h"]), fit=fit, fq=fq) + contact_section("Get the media kits")
+    items = {"@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": SITE + "/creators/" + c["slug"], "name": c["name"]}
+                                                       for i, c in enumerate(C.CREATORS)]}
+    write_page("/creators", d["title"], d["description"], body, [items, cld, fld], og="/assets/og/creators.png", priority="0.9")
+
+
+def brands_page():
+    d = C.BRANDS_PAGE
+    hero, cld = page_hero([("Home", "/"), ("For brands", "/brands")], d["eyebrow"], d["h1"], d["lede"])
+    book = "".join("<li>%s</li>" % e(x) for x in d["book"])
+    steps = "".join('<div class="st"><h3>%s</h3><p>%s</p></div>' % (e(t), e(b)) for t, b in d["steps"])
+    wr = "".join("<div><dt>%s</dt><dd>%s</dd></div>" % (e(k), e(v)) for k, v in d["writing"])
+    logos = "".join('<li><img src="/assets/logos/%s" alt="%s" loading="lazy" height="28"></li>' % (f, e(n)) for n, f in C.BRAND_LOGOS if f)
+    fq, fld = faq_block(d["faq"])
+    body = hero + """<section class="pg-sec" style="padding-top:0"><div class="wrap pg-two">
+<div><h2>{book_h}</h2><ul class="hl">{book}</ul></div>
+<div><h2>{wr_h}</h2><dl class="facts">{wr}</dl></div></div></section>
+<section class="pg-sec"><div class="wrap"><h2>How a campaign runs</h2><div class="steps" style="margin-top:32px">{steps}</div></div></section>
+<section class="pg-sec"><div class="wrap"><h2>Brands our creators have worked with</h2><ul class="logo-grid">{logos}</ul></div></section>
+{fq}""".format(book_h=e(d["book_h"]), book=book, wr_h=e(d["writing_h"]), wr=wr, steps=steps, logos=logos, fq=fq) + contact_section(
+        "Send a brief", "Or ask for the media kits. We usually reply within a day.")
+    body = body.replace('<option value="brief">', '<option value="brief" selected>')
+    svc = {"@type": "Service", "name": "Creator and influencer partnerships", "serviceType": "Influencer marketing and talent management",
+           "provider": {"@id": SITE + "/#org"}, "areaServed": ["Australia", "Worldwide"], "description": d["lede"]}
+    write_page("/brands", d["title"], d["description"], body, [svc, cld, fld], og="/assets/og/brands.png", priority="0.9")
+
+
+def ugc_page():
+    d = C.UGC_PAGE
+    hero, cld = page_hero([("Home", "/"), ("UGC creators", "/ugc-creators-australia")], d["eyebrow"], d["h1"], d["lede"])
+    rows = "".join("<tr><th scope=\"row\">%s</th><td>%s</td><td>%s</td></tr>" % (e(a), e(b), e(c)) for a, b, c in d["vs"])
+    who = "".join('<li><a href="/creators/{slug}"><b>{name}</b></a> · {t}</li>'.format(
+        slug=creator_by_key(k)["slug"], name=e(creator_by_key(k)["name"]), t=e(t)) for k, t in d["who"])
+    steps = "".join('<div class="st"><h3>%s</h3><p>%s</p></div>' % (e(t), e(b)) for t, b in d["steps"])
+    fq, fld = faq_block(d["faq"])
+    body = hero + """<section class="pg-sec" style="padding-top:0"><div class="wrap"><h2>{vs_h}</h2>
+<div class="tbl"><table><thead><tr><th></th><th>UGC</th><th>Sponsored post</th></tr></thead><tbody>{rows}</tbody></table></div></div></section>
+<section class="pg-sec"><div class="wrap"><h2>{who_h}</h2><ul class="hl">{who}</ul></div></section>
+<section class="pg-sec"><div class="wrap"><h2>How UGC works with MANA</h2><div class="steps" style="margin-top:32px">{steps}</div></div></section>
+{fq}""".format(vs_h=e(d["vs_h"]), rows=rows, who_h=e(d["who_h"]), who=who, steps=steps, fq=fq) + contact_section("Ask about UGC", "Tell us the product and where the content will run. We usually reply within a day.")
+    body = body.replace('<option value="brief">', '<option value="brief" selected>')
+    svc = {"@type": "Service", "name": "UGC creators in Australia", "serviceType": "User-generated content production",
+           "provider": {"@id": SITE + "/#org"}, "areaServed": "Australia", "description": d["lede"]}
+    write_page("/ugc-creators-australia", d["title"], d["description"], body, [svc, cld, fld], og="/assets/og/ugc.png", priority="0.8")
+
+
+def about_page():
+    d = C.ABOUT_PAGE
+    hero, cld = page_hero([("Home", "/"), ("About", "/about")], d["eyebrow"], d["h1"], d["lede"])
+    pts = "".join('<div class="st"><h3>%s</h3><p>%s</p></div>' % (e(t), e(b)) for t, b in d["points"])
+    fq, fld = faq_block(d["faq"])
+    body = hero + '<section class="pg-sec" style="padding-top:0"><div class="wrap"><h2>How we work</h2><div class="steps nonum" style="margin-top:32px">%s</div></div></section>%s' % (
+        pts, fq) + contact_section("Work with us", "Ask for a media kit or send a brief. We usually reply within a day.")
+    about = {"@type": "AboutPage", "@id": SITE + "/about#about", "url": SITE + "/about", "about": {"@id": SITE + "/#org"}}
+    write_page("/about", d["title"], d["description"], body, [about, cld, fld], priority="0.6")
+
+
+def build_pages():
+    for k in ("hugo", "kevin", "preston"):
+        profile_page(k)
+    creators_page()
+    brands_page()
+    ugc_page()
+    about_page()
+
+
+PAGE_CSS = """
+/* interior pages */
+.crumbs{font-size:13px;color:var(--label);margin-bottom:32px}.crumbs a{text-decoration:none}.crumbs a:hover{text-decoration:underline}
+.pg-hero{padding:48px 0 72px}
+.pg-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:56px;align-items:center}
+.pg-hero .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+.pg-photo img{border-radius:var(--r);aspect-ratio:4/5;object-fit:cover;width:100%}
+.pg-sec{padding:0 0 96px}
+.pg-two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:start}
+.pg-sec h2{margin-bottom:24px}
+.facts{border-top:1px solid var(--line)}
+.facts div{display:grid;grid-template-columns:150px minmax(0,1fr);gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.facts.wide div{grid-template-columns:minmax(0,1fr) 220px}
+.facts dt{font-size:14px;color:var(--label)}.facts dd{font-size:16px;font-weight:500}
+.facts dd a{color:var(--blue)}
+.hl{list-style:none;display:flex;flex-direction:column;gap:12px}
+.hl li{position:relative;padding-left:28px;color:var(--text-2)}
+.hl li::before{content:"\\2713";position:absolute;left:0;top:0;color:var(--blue);font-weight:700}
+.hl li a{color:var(--text)}
+.mt{margin-top:32px;margin-bottom:12px}
+.chips{list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+.chips li{font-size:14px;font-weight:600;background:#F4F4F5;border-radius:999px;padding:6px 12px}
+.gal{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
+.gal img{border-radius:8px;aspect-ratio:4/5;object-fit:cover;width:100%;background:#18181B}
+.gal figcaption{font-size:14px;margin-top:8px;line-height:1.35}.gal figcaption b{display:block}.gal figcaption span{color:var(--text-2)}
+.cr .bd h3 a{text-decoration:none}.cr .bd h3 a:hover{text-decoration:underline}
+.cr .bd p{font-size:15px;color:var(--text-2)}
+.logo-grid{list-style:none;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:center}
+.logo-grid img{height:28px;width:auto;max-width:140px;object-fit:contain;filter:grayscale(1) brightness(0);opacity:.6}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--card)}
+.tbl table{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{text-align:left;padding:14px 16px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl thead th{font-size:13px;color:var(--label);font-weight:600}
+.tbl tbody th{font-weight:600}.tbl tr:last-child th,.tbl tr:last-child td{border-bottom:0}
+.steps.nonum .st::before{content:none}
+@media(max-width:900px){.pg-grid,.pg-two{grid-template-columns:minmax(0,1fr);gap:32px}.pg-photo{max-width:360px}.gal{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.facts div{grid-template-columns:minmax(0,1fr);gap:4px}.facts.wide div{grid-template-columns:minmax(0,1fr)}}
+"""
+
+
+def indexnow_ping(paths):
+    """Tell Bing, Yandex and other IndexNow engines about changed URLs. Run after a deploy: python3 tools/build.py --ping"""
+    import urllib.request
+    body = json.dumps({"host": "www.mana-mgmt.com", "key": INDEXNOW_KEY, "keyLocation": SITE + "/%s.txt" % INDEXNOW_KEY,
+                       "urlList": [SITE + p for p in paths]}).encode()
+    req = urllib.request.Request("https://api.indexnow.org/indexnow", data=body, headers={"Content-Type": "application/json; charset=utf-8"})
+    with urllib.request.urlopen(req, timeout=20) as r:
+        print("IndexNow", r.status, len(paths), "urls")
+
+
 def robots():
     return "User-agent: *\nAllow: /\n\nSitemap: %s/sitemap.xml\n" % SITE
 
@@ -425,6 +634,8 @@ def llms():
     lines += ["", "## Selected work"]
     for w in C.WORK:
         lines.append("- %s, %s: %s (%s)" % (w["title"], w["who"], w["body"], ", ".join(w["chips"])))
+    lines += ["", "## Pages", "- Creators: %s/creators" % SITE] + ["- %s: %s/creators/%s" % (c["name"], SITE, c["slug"]) for c in C.CREATORS] + [
+        "- For brands: %s/brands" % SITE, "- UGC creators in Australia: %s/ugc-creators-australia" % SITE, "- About: %s/about" % SITE]
     lines += ["", "## Contact", "- Email: shei@mana-mgmt.com", "- Media kit or brief: %s/#contact" % SITE,
               "- Instagram: https://www.instagram.com/manamgmt/", ""]
     return "\n".join(lines)
@@ -442,12 +653,16 @@ def main():
     for name in ("favicon.svg", "apple-touch-icon.png"):
         if (SRC / "assets/brand" / name).exists():
             shutil.copy(SRC / "assets/brand" / name, OUT / name)
-    (OUT / "assets/site.css").write_text(CSS.strip() + "\n")
+    (OUT / "assets/site.css").write_text(CSS.strip() + "\n" + PAGE_CSS.strip() + "\n")
     (OUT / "assets/site.js").write_text(JS.strip() + "\n")
     (OUT / "index.html").write_text(home())
     (OUT / "404.html").write_text(not_found())
     (OUT / "robots.txt").write_text(robots())
-    (OUT / "sitemap.xml").write_text(sitemap(["/"]))
+    build_pages()
+    (OUT / "sitemap.xml").write_text(sitemap(["/"] + [p for p, _ in PAGES]))
+    (OUT / ("%s.txt" % INDEXNOW_KEY)).write_text(INDEXNOW_KEY)
+    if "--ping" in sys.argv:
+        indexnow_ping(["/"] + [p for p, _ in PAGES])
     (OUT / "llms.txt").write_text(llms())
     print("built", sorted(str(p.relative_to(OUT)) for p in OUT.rglob("*") if p.is_file()))
 

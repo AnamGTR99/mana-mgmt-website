@@ -158,3 +158,217 @@ FOOTER = [
     ("MANA", [("For brands", "/#process"), ("FAQ", "/#faq"), ("Get a media kit", "/#contact")]),
     ("Contact", [("shei@mana-mgmt.com", "mailto:shei@mana-mgmt.com"), ("Instagram", "https://www.instagram.com/manamgmt/")]),
 ]
+
+
+# ---------------------------------------------------------------------------
+# Interior pages (SEO / GEO). Same fact rules as above: only figures from the Facts files,
+# media kits and closed deals. No prices. Each page opens with a plain, quotable definition.
+# ---------------------------------------------------------------------------
+
+NAV = [("/creators", "Creators"), ("/brands", "For brands"), ("/ugc-creators-australia", "UGC"), ("/about", "About")]
+
+FOOTER = [
+    ("Creators", [("All creators", "/creators"), ("Hugo Zbor", "/creators/hugo-zbor"), ("Kevin Chiang", "/creators/kevin-chiang"),
+                  ("Preston Young", "/creators/preston-young")]),
+    ("MANA", [("For brands", "/brands"), ("UGC creators", "/ugc-creators-australia"), ("About", "/about"), ("Get a media kit", "/#contact")]),
+    ("Contact", [("shei@mana-mgmt.com", "mailto:shei@mana-mgmt.com"), ("Instagram", "https://www.instagram.com/manamgmt/")]),
+]
+
+PROFILES = {
+    "hugo": {
+        "title": "Hugo Zbor | Melbourne creative director and content creator | MANA",
+        "description": ("Hugo Zbor is a Melbourne creative director known for green-screen concept films for Converse, ASICS "
+                        "and Named Collective. Managed by MANA. Get his media kit."),
+        "eyebrow": "Creative direction, green-screen and 3D · Melbourne",
+        "lede": ("Hugo Zbor is a Melbourne-based creative director and content creator, managed by MANA. He makes "
+                 "green-screen concept films, motion, 3D and print for brands, labels and artists, from the first idea "
+                 "to the final composite."),
+        "facts": [("Instagram", "@hugozbor"), ("TikTok", "@hugozbor"), ("Based in", "Melbourne, Australia"),
+                  ("Makes", "Concept films, motion and CGI, print and identity, websites"),
+                  ("Projects shipped", "40+ (media kit, July 2026)"), ("Website", "hugozbor.com")],
+        "brands": ["Converse", "ASICS", "Named Collective", "Starface", "Meliora", "Lowheads", "Good Optiks", "Ultralight LDN", "8illy"],
+        "highlights": [
+            "Converse commissioned a green-screen video, then booked Hugo again for a second.",
+            "Concept, shoot direction and the full composite come from one person, so the work holds together.",
+            "His most frequent collaborator has come back seven times.",
+        ],
+        "gallery": [("work-converse-1.webp", "Converse", "Green-screen campaign video"),
+                    ("work-converse-2.webp", "Converse", "Campaign video #2"),
+                    ("work-named-collective.webp", "Named Collective", "LOCK IN campaign video"),
+                    ("work-lowheads.webp", "Lowheads", "Dynamic magazine, issue #01"),
+                    ("work-ultralight.webp", "Ultralight LDN", "FIFA street style video")],
+        "fit": "Product drops, campaign launches, streetwear, footwear, music and any brand that wants a visual world, not a template.",
+        "faq": [
+            ("What does Hugo Zbor make?", "Green-screen concept films and composites, motion and CGI, print and identity work "
+             "such as cover art and magazines, and art-directed websites."),
+            ("Which brands has Hugo Zbor worked with?", "Converse (twice), ASICS, Named Collective, Starface, Meliora, Lowheads, "
+             "Good Optiks, Ultralight LDN and 8illy, plus independent labels and artists."),
+            ("How do I book Hugo Zbor?", "Ask MANA for his media kit using the form below or at shei@mana-mgmt.com. "
+             "Every project is scoped to the brief and quoted for your exact deliverables."),
+        ],
+    },
+    "kevin": {
+        "title": "Kevin Chiang | Architecture and design content creator, Melbourne | MANA",
+        "description": ("Kevin Chiang is a Melbourne architecture and design creator with 928K+ monthly views, 92% from non-followers. "
+                        "One reel drove 100+ paid sign-ups for Suapp. Managed by MANA."),
+        "eyebrow": "Architecture, design and lifestyle · Melbourne",
+        "lede": ("Kevin Chiang is a Melbourne architecture and design content creator, managed by MANA. His Instagram reels "
+                 "reach design students, young architects and creatives: 928K+ monthly views, 92% of them from non-followers."),
+        "facts": [("Instagram", "@kevnchiang"), ("Based in", "Melbourne, Australia"),
+                  ("Content", "Architecture, design, student life, tech, lifestyle"),
+                  ("Reach", "928K+ monthly views · 40K average reel views · 359K unique viewers in 30 days"),
+                  ("Audience", "88% aged 18 to 34 · 49% men, 51% women"),
+                  ("Top markets", "India 12.1% · Australia 9.2% · United States 6.9% · #1 city Melbourne"),
+                  ("Source", "Instagram insights, 30 days, June 2026")],
+        "brands": ["Suapp", "D5 Render", "Enscape", "Corel", "Chief", "Status Audio", "Astropad", "Element Brooklyn",
+                   "Ultrahuman", "Secretlab", "Genetix Nutrition", "MakeUGC"],
+        "highlights": [
+            "Suapp: one organic reel showing its SketchUp plug-in reached 490K+ views and drove 100+ paid sign-ups, with no boost and no whitelisting.",
+            "“5 tools you should know as an architecture student”: 161K views and 11K saves, and 25 sign-ups for a mobile app.",
+            "45+ brand partnerships across design software, tech and lifestyle.",
+        ],
+        "gallery": [("work-kevin-reel.webp", "Branded reel", "5 tools you should know as an architecture student")],
+        "fit": "Design and 3D software, apps and SaaS for students and creatives, tech, desk setups and lifestyle brands.",
+        "faq": [
+            ("Who watches Kevin Chiang?", "Design students, young architects and creatives. 88% of his audience is aged 18 to 34, "
+             "split evenly between men and women, with India, Australia and the US as top markets."),
+            ("Does Kevin Chiang's content drive sign-ups?", "Yes. One organic reel for Suapp drove 100+ paid sign-ups, and a "
+             "branded reel on architecture tools drove 25 app sign-ups."),
+            ("How do I book Kevin Chiang?", "Ask MANA for his media kit using the form below or at shei@mana-mgmt.com. "
+             "Rates are quoted for your exact deliverables."),
+        ],
+    },
+    "preston": {
+        "title": "Preston Young | Lifestyle and self-growth creator, Melbourne | MANA",
+        "description": ("Preston Young is a Melbourne lifestyle and self-growth creator: 1.86M views and 1.09M unique viewers in "
+                        "90 days, and a 2.9M-view reel. Managed by MANA."),
+        "eyebrow": "Life lessons, lifestyle and self-growth · Melbourne",
+        "lede": ("Preston Young is a Melbourne lifestyle and self-growth content creator, managed by MANA. His cinematic, "
+                 "story-led reels on life lessons, student life and training reached 1.86M views and 1.09M unique viewers in 90 days."),
+        "facts": [("Instagram", "@by.preston"), ("Based in", "Melbourne, Australia · student at the University of Melbourne"),
+                  ("Content", "Life lessons, self-growth, day in the life, student life, fitness, Asian culture"),
+                  ("Reach", "1.86M views · 81K average reel views · 86.6% non-follower reach"),
+                  ("Audience", "Two in three aged 18 to 34 · 65% men, 35% women"),
+                  ("Top markets", "United States 18.0% · Philippines 16.1% · Indonesia 7.2% · #1 city Singapore"),
+                  ("Source", "Instagram insights, 90 days, June to September 2026")],
+        "brands": [],
+        "highlights": [
+            "“Ichi-go Ichi-e” reached 2.9M views, with 58.2K shares, 284.3K likes and 30K reposts.",
+            "“One of the hardest lessons I’ve learned” reached 1.0M views and 22.3K reposts.",
+            "Six reels past 750K views in the last 12 months.",
+        ],
+        "gallery": [],
+        "fit": "Lifestyle, wellness, fitness, education and apps for young adults, especially brands reaching the US and Southeast Asia.",
+        "faq": [
+            ("Who watches Preston Young?", "Young adults: two in three viewers are aged 18 to 34, 65% are men, and the top markets "
+             "are the United States, the Philippines and Indonesia."),
+            ("What does Preston Young make for brands?", "Sponsored reels, whitelisting, UGC, affiliate and ambassador "
+             "partnerships, and product reviews, in the same cinematic, story-led style as his own reels."),
+            ("How do I book Preston Young?", "Ask MANA for his media kit using the form below or at shei@mana-mgmt.com. "
+             "Rates are quoted for your exact deliverables."),
+        ],
+    },
+}
+
+CREATORS_PAGE = {
+    "title": "Australian content creators and influencers | MANA talent management",
+    "description": ("Meet the Melbourne-based content creators MANA represents: Hugo Zbor, Kevin Chiang and Preston Young. "
+                    "Audiences, results and brands, plus media kits on request."),
+    "eyebrow": "Creators",
+    "h1": "Australian content creators, managed by MANA.",
+    "lede": ("MANA represents three Melbourne-based content creators and influencers, each with an audience that watches to "
+             "the end. Every creator has a media kit with audience data; ask for it and we reply within a day."),
+    "fit_h": "Which creator fits your brand?",
+    "fit": [("Design software, apps, tech, desk setups", "Kevin Chiang"),
+            ("Drops, campaign films, streetwear, footwear, music", "Hugo Zbor"),
+            ("Lifestyle, wellness, fitness, education, young adults in the US and Asia", "Preston Young")],
+    "faq": [
+        ("Are MANA's creators based in Australia?", "Yes. Hugo Zbor, Kevin Chiang and Preston Young are all based in Melbourne. "
+         "Their audiences are global, and they work with brands in Australia and around the world."),
+        ("Can I book more than one creator?", "Yes. Ask for all three media kits and tell us the campaign; we'll suggest the "
+         "creator or combination that fits."),
+    ],
+}
+
+BRANDS_PAGE = {
+    "title": "Hire Australian content creators for your brand | MANA",
+    "description": ("Work with Melbourne content creators through MANA: creator matching, scope, contracts and usage rights, "
+                    "production and posting, handled by one point of contact."),
+    "eyebrow": "For brands",
+    "h1": "Work with Australian content creators.",
+    "lede": ("MANA runs creator partnerships end to end: we match your brief to the right creator, put the scope and usage "
+             "rights in writing, manage production and approvals, and make sure the content goes live on the agreed date."),
+    "book_h": "What you can book",
+    "book": ["Sponsored Instagram Reels, carousels and stories", "UGC for your own channels and ads",
+             "Partnership ads and whitelisting", "Product reviews and launches", "Ambassador and affiliate partnerships",
+             "Concept films with motion and 3D (Hugo Zbor)"],
+    "steps": [("Send a brief", "Or just the product, the audience and the goal. We usually reply within a day."),
+              ("Get the media kit", "The creator who fits, their audience data and the options for your campaign."),
+              ("Agree the scope", "Deliverables, revision rounds, usage period, whitelisting, exclusivity and the live date, in writing."),
+              ("Content goes live", "Drafts land on the agreed dates and the post goes live on time.")],
+    "writing_h": "What we put in writing before anything is filmed",
+    "writing": [("Deliverables", "Exactly what gets made, for which platform."), ("Revision rounds", "How many, and when they're due."),
+                ("Usage rights", "Where you can use the content, and for how long."), ("Whitelisting", "Whether you can run it as an ad from the creator's handle."),
+                ("Exclusivity", "Whether the creator holds off on competitors, and for how long."), ("Dates", "Draft, approval and live dates.")],
+    "faq": [
+        ("Do you publish creator rates?", "No. Rates depend on deliverables, usage and exclusivity, so we quote for your exact scope "
+         "and send it with the media kit."),
+        ("Do you work with brands outside Australia?", "Yes. Our creators have made work for brands in Australia, the US, the UK and "
+         "Europe, including Converse, ASICS, Ultrahuman and D5 Render."),
+        ("Can your creators make content for our ads?", "Yes. They make UGC for brand channels and can license organic posts for "
+         "paid use or whitelisting. See UGC creators in Australia."),
+        ("How quickly do you reply?", "Usually within a day. Every brief gets a real answer, including when none of our creators fit."),
+    ],
+}
+
+UGC_PAGE = {
+    "title": "UGC creators in Australia | MANA talent management",
+    "description": ("MANA represents Melbourne UGC creators who make videos for your brand's channels and ads, with usage rights "
+                    "agreed up front. Kevin Chiang, Preston Young and Hugo Zbor."),
+    "eyebrow": "UGC creators · Australia",
+    "h1": "UGC creators in Australia.",
+    "lede": ("UGC (user-generated content) is content a creator makes for a brand to post on its own channels or run as ads, "
+             "rather than on the creator's feed. MANA represents Melbourne-based creators who make UGC as well as sponsored posts, "
+             "with usage rights agreed before filming."),
+    "vs_h": "UGC or a sponsored post?",
+    "vs": [("Where it runs", "Your channels and ads", "The creator's Instagram"),
+           ("Whose audience", "Yours, or paid reach", "The creator's audience"),
+           ("What you get", "Raw footage or an edited video", "A live post, plus insights"),
+           ("Usage", "Licensed for an agreed period", "Organic; paid use or whitelisting is an add-on")],
+    "who_h": "Our UGC creators",
+    "who": [("kevin", "Raw footage and edited reels for design software, apps, tech and lifestyle. Delivered UGC for Chief and MakeUGC."),
+            ("preston", "Cinematic lifestyle, fitness and self-growth videos for brands reaching young adults."),
+            ("hugo", "Concept films and composites for brand channels, when you want something nobody else has.")],
+    "steps": [("Brief", "Product, audience, where it will run and the angle you want."),
+              ("Script and shot list", "Agreed before filming, so the first draft is close."),
+              ("Filming and edit", "Raw footage, an edited cut, or both."),
+              ("Usage", "Paid usage licensed for 3, 6 or 12 months, agreed in writing.")],
+    "faq": [
+        ("What is UGC?", "User-generated content: photos or videos a creator makes for a brand to use on its own channels or in ads. "
+         "It looks native to social feeds because a real creator makes it."),
+        ("How are usage rights handled for UGC?", "The usage period (for example 3, 6 or 12 months), the channels and whether it runs "
+         "as paid ads are agreed in writing before filming."),
+        ("Can I get raw footage?", "Yes. Kevin Chiang delivers raw footage or fully edited reels, and Preston Young offers UGC "
+         "in his cinematic style."),
+    ],
+}
+
+ABOUT_PAGE = {
+    "title": "About MANA | Influencer and talent management agency, Melbourne",
+    "description": ("MANA is an influencer and talent management agency in Melbourne, Australia, founded in 2025. A small roster, "
+                    "one point of contact, and everything agreed in writing."),
+    "eyebrow": "About",
+    "h1": "About MANA.",
+    "lede": ("MANA is an influencer and talent management agency in Melbourne, Australia, founded in 2025. We represent content "
+             "creators Hugo Zbor, Kevin Chiang and Preston Young and run their brand partnerships from brief to final post."),
+    "points": [("A small roster", "We take on a few creators at a time, so each one gets real management and every brand gets a fast answer."),
+               ("One point of contact", "Brands deal with MANA from the first email to the final post. Creators get to create."),
+               ("Everything in writing", "Deliverables, revisions, usage rights and dates are agreed before anything is filmed."),
+               ("Built like a product", "MANA is run by an engineer, Shei, who builds the agency's own tools so no brief, date or approval gets lost.")],
+    "faq": [
+        ("Where is MANA based?", "Melbourne, Australia. We work with brands in Australia and around the world, mostly remotely."),
+        ("Who runs MANA?", "MANA is run by Shei, an engineer who manages the roster and builds the agency's own systems for "
+         "briefs, deals and approvals."),
+        ("How do I contact MANA?", "Use the form below or email shei@mana-mgmt.com. We usually reply within a day."),
+    ],
+}
