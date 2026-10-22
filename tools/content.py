@@ -65,7 +65,7 @@ HOME = {
     "title": "MANA | Influencer and content creator management, Melbourne, Australia",
     "description": ("MANA is a Melbourne influencer and talent management agency. We represent Australian content creators "
                     "Hugo Zbor, Kevin Chiang and Preston Young and run brand partnerships end to end."),
-    "eyebrow": "Influencer and talent management · Melbourne, Australia",
+    "eyebrow": "Influencer and talent management · Based in Australia, working globally",
     "h1": "Creators whose content gets watched, managed properly.",
     "lede_html": ("<b>MANA is an influencer and talent management agency in Melbourne, Australia</b>, "
                   "representing Hugo Zbor, Kevin Chiang and Preston Young."),
