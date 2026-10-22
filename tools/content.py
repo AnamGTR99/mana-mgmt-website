@@ -13,7 +13,7 @@ KNOWS_ABOUT = ["Talent management", "Creator management", "Influencer marketing"
 
 ORG_SAMEAS = ["https://www.instagram.com/manamgmt/"]
 
-NAV = [("/#creators", "Creators"), ("/#work", "Work"), ("/#about", "About"), ("/#contact", "Contact")]
+NAV = [("/#creators", "Creators"), ("/#work", "Work"), ("/#process", "For brands"), ("/#faq", "FAQ")]
 
 NEEDS = [
     ("kit-all", "Media kits for all creators"),
@@ -32,6 +32,7 @@ CREATORS = [
         "niche": "Creative direction, green-screen and 3D",
         "job_title": "Creative director and content creator",
         "blurb": "Green-screen concept films for Converse, ASICS and Named Collective, from idea to final cut.",
+        "stats": [("40+", "Projects shipped"), ("2×", "Converse videos")],
         "photo_alt": "Hugo Zbor standing in a white studio",
         "knows_about": ["Creative direction", "Green-screen video", "Motion design", "3D", "Streetwear"],
         "same_as": ["https://www.instagram.com/hugozbor/", "https://www.tiktok.com/@hugozbor", "https://hugozbor.com"],
@@ -42,6 +43,7 @@ CREATORS = [
         "niche": "Architecture, design and lifestyle",
         "job_title": "Architecture and design content creator",
         "blurb": "Architecture and design content for students, young architects and creatives aged 18 to 34.",
+        "stats": [("928K+", "Monthly views"), ("92%", "Non-follower reach")],
         "photo_alt": "Kevin Chiang building an architecture model at his desk",
         "knows_about": ["Architecture", "Design software", "Student life", "Lifestyle"],
         "same_as": ["https://www.instagram.com/kevnchiang/", "https://www.bykevinchiang.com"],
@@ -52,6 +54,7 @@ CREATORS = [
         "niche": "Life lessons, lifestyle and self-growth",
         "job_title": "Lifestyle and self-growth content creator",
         "blurb": "Cinematic, story-led reels on life lessons, student life and training.",
+        "stats": [("1.86M", "Views in 90 days"), ("81K", "Average reel views")],
         "photo_alt": "Preston Young checking a camera on a Melbourne street",
         "knows_about": ["Self-growth", "Lifestyle", "Student life", "Fitness"],
         "same_as": ["https://www.instagram.com/by.preston/"],
@@ -62,36 +65,42 @@ HOME = {
     "title": "MANA | Influencer and content creator management, Melbourne, Australia",
     "description": ("MANA is a Melbourne influencer and talent management agency. We represent Australian content creators "
                     "Hugo Zbor, Kevin Chiang and Preston Young and run brand partnerships end to end."),
-    "h1": "Talent management for creators.",
-    "lede_html": ("MANA is an influencer and talent management agency in Melbourne, Australia. "
-                  "We represent Hugo Zbor, Kevin Chiang and Preston Young, and run their brand work from brief to final post."),
-    "proof": ("Kevin’s organic reel for Suapp drove 100+ paid sign-ups. Converse booked Hugo twice. "
-              "We keep the roster small, so every creator gets real management and every brand deals with one person."),
-    "brands_h": "For brands",
-    "brands_p": ("Send us the product and the goal, or ask for a media kit. We reply with the creator who fits, "
-                 "their audience and options for your campaign. Deliverables, usage rights and dates go in writing "
-                 "before anything is filmed."),
-    "creators_h": "For creators",
-    "creators_p": ("We take on a few creators at a time and handle the brand side: pitching, negotiating, contracts, "
-                   "deadlines and getting paid."),
-    "contact_h": "Work with us.",
-    "contact_sub": "Ask for a media kit or send a brief. You\u2019ll hear back from shei@mana-mgmt.com, usually within a day.",
+    "eyebrow": "Influencer and talent management · Melbourne, Australia",
+    "h1": "Creators whose content gets watched, managed properly.",
+    "lede_html": ("<b>MANA is an influencer and talent management agency in Melbourne, Australia.</b> "
+                  "We represent Hugo Zbor, Kevin Chiang and Preston Young and run their brand deals from brief to final post."),
+    "trust": "Worked with Converse, ASICS, Ultrahuman, D5 Render, Chief and more.",
+    "roster_h": "Three creators. Audiences that watch to the end.",
+    "roster_sub": "A small roster, so every creator gets real management.",
+    "work_h": "Results from real campaigns.",
+    "work_sub": "Organic numbers from Instagram insights. No paid boosts.",
+    "proc_h": "How a campaign runs with MANA.",
+    "proc_sub": "One point of contact from first email to final post.",
+    "join_h": "Creators: looking for management?",
+    "join_p": "We take on a few creators at a time and handle the brand side for them.",
+    "contact_h": "Get a media kit or send a brief.",
+    "contact_sub": "Tell us who you’re interested in. We’ll reply with the media kit and options for your campaign.",
 }
 
-# Work stills, all from closed deals or the creator's own reels.
 WORK = [
-    {"image": "work-converse-1.webp", "brand": "Converse", "creator": "Hugo Zbor", "what": "Green-screen campaign video",
-     "alt": "Hugo Zbor seated above a city skyline in his green-screen video for Converse"},
-    {"image": "work-kevin-reel.webp", "brand": "Branded reel", "creator": "Kevin Chiang", "what": "5 tools you should know as an architecture student",
-     "alt": "Kevin Chiang sketching at his desk, from his reel on tools for architecture students"},
-    {"image": "work-named-collective.webp", "brand": "Named Collective", "creator": "Hugo Zbor", "what": "LOCK IN campaign video",
-     "alt": "Figure in a fur-trimmed coat from Hugo Zbor's LOCK IN video for Named Collective"},
-    {"image": "work-converse-2.webp", "brand": "Converse", "creator": "Hugo Zbor", "what": "Campaign video #2",
-     "alt": "Hugo Zbor at a robotic workstation in his second Converse video"},
-    {"image": "work-lowheads.webp", "brand": "Lowheads", "creator": "Hugo Zbor", "what": "Dynamic magazine, issue #01",
-     "alt": "Cover of the Lowheads underground marketplace magazine designed by Hugo Zbor"},
-    {"image": "work-ultralight.webp", "brand": "Ultralight LDN", "creator": "Hugo Zbor", "what": "FIFA street style video",
-     "alt": "Figure in a striped jumper in a stadium, from Hugo Zbor's video for Ultralight LDN"},
+    {
+        "who": "Kevin Chiang × Suapp", "title": "One reel, 100+ paid sign-ups",
+        "body": "An organic reel showing Suapp’s SketchUp plug-in to architecture students. No boost.",
+        "big": "100+", "big_label": "paid sign-ups from one reel",
+        "chips": ["490K+ views", "29K saves"],
+    },
+    {
+        "who": "Hugo Zbor × Converse", "title": "A green-screen film, then a second",
+        "body": "Idea to final composite by one creative. Converse re-booked him for a second.",
+        "image": "work-converse-hugo.webp", "image_alt": "Still from Hugo Zbor’s green-screen video for Converse",
+        "chips": ["2 videos", "Re-booked"],
+    },
+    {
+        "who": "Preston Young · organic", "title": "Ichi-go Ichi-e: 2.9M views",
+        "body": "One idea told in under a minute. The reach a brand placement sits inside.",
+        "big": "2.9M", "big_label": "views on one reel",
+        "chips": ["58.2K shares", "284K likes"],
+    },
 ]
 
 # Closed, public-safe partners across the roster (deal audit 20 Oct 2026, media kits). Oner is NDA: never add.
@@ -99,9 +108,16 @@ BRANDS = ["Converse", "ASICS", "Ultrahuman", "Starface", "Named Collective", "Me
           "Ultralight LDN", "8illy", "D5 Render", "Enscape", "Corel", "Suapp", "Chief", "Status Audio", "Astropad",
           "Element Brooklyn", "Secretlab", "MakeUGC"]
 
+STEPS = [
+    ("Send a brief", "Or just the product and the goal."),
+    ("Get the media kit", "The creators who fit, with audience data."),
+    ("Agree the scope", "Deliverables, usage and dates in writing."),
+    ("Content goes live", "On the agreed date, revisions capped."),
+]
+
 FAQ = [
     ("What is MANA?",
-     "MANA is an influencer and talent management agency based in Melbourne, Australia. We represent content creators and handle their "
+     "MANA is a talent management agency based in Melbourne, Australia. We represent content creators and handle their "
      "brand partnerships: finding the right brands, scoping and negotiating deals, contracts and usage rights, "
      "deadlines and payment."),
     ("How do I find content creators and influencers in Australia for my brand?",
@@ -130,6 +146,6 @@ FOOTER_BLURB = ("Talent management for content creators. Based in Melbourne, wor
 
 FOOTER = [
     ("Creators", [("Hugo Zbor", "/#hugo-zbor"), ("Kevin Chiang", "/#kevin-chiang"), ("Preston Young", "/#preston-young")]),
-    ("MANA", [("Work", "/#work"), ("About", "/#about"), ("Get a media kit", "/#contact")]),
+    ("MANA", [("Work", "/#work"), ("For brands", "/#process"), ("FAQ", "/#faq"), ("Get a media kit", "/#contact")]),
     ("Contact", [("shei@mana-mgmt.com", "mailto:shei@mana-mgmt.com"), ("Instagram", "https://www.instagram.com/manamgmt/")]),
 ]
