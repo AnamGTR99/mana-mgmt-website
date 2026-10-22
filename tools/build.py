@@ -557,6 +557,51 @@ def about_page():
     write_page("/about", d["title"], d["description"], body, [about, cld, fld], priority="0.6")
 
 
+def article_pages():
+    """Journal articles and case studies written by the search agent (content/pages/*.json), published only after
+    Anam approves them in MANA Studio. Each file: slug, kind (journal|work), title, description, h1, eyebrow, lede,
+    date, sections [{h2, body: [paragraphs], bullets: [..]}], faq [[q, a]], related [paths]."""
+    import glob
+    items = []
+    for f in sorted(glob.glob(str(ROOT / "content/pages/*.json"))):
+        a = json.load(open(f))
+        kind = a.get("kind", "journal")
+        base = "/journal" if kind == "journal" else "/work"
+        path = "%s/%s" % (base, a["slug"])
+        crumb_name = "Journal" if kind == "journal" else "Work"
+        hero, cld = page_hero([("Home", "/"), (crumb_name, base), (a["h1"], path)], a.get("eyebrow", crumb_name), a["h1"], a["lede"])
+        secs = []
+        for sec in a.get("sections", []):
+            html = "<h2>%s</h2>" % e(sec["h2"]) + "".join("<p>%s</p>" % e(p) for p in sec.get("body", []))
+            if sec.get("bullets"):
+                html += '<ul class="hl">%s</ul>' % "".join("<li>%s</li>" % e(x) for x in sec["bullets"])
+            secs.append(html)
+        rel = ""
+        if a.get("related"):
+            rel = '<p class="k" style="margin-top:32px">Related: %s</p>' % " · ".join(
+                '<a href="%s">%s</a>' % (p, e(p.strip("/").split("/")[-1].replace("-", " ").capitalize() or "Home")) for p in a["related"])
+        date = a.get("date", TODAY)
+        fq, fld = faq_block(a["faq"]) if a.get("faq") else ("", None)
+        body = hero + '<section class="pg-sec" style="padding-top:0"><div class="wrap"><article class="prose"><p class="k">Published %s · MANA</p>%s%s</article></div></section>%s' % (
+            e(date), "".join(secs), rel, fq) + contact_section()
+        art = {"@type": "Article" if kind == "work" else "BlogPosting", "headline": a["h1"], "description": a["description"],
+               "datePublished": date, "dateModified": a.get("updated", date), "author": {"@id": SITE + "/#org"},
+               "publisher": {"@id": SITE + "/#org"}, "mainEntityOfPage": SITE + path}
+        write_page(path, a["title"], a["description"], body, [art, cld] + ([fld] if fld else []), priority="0.7")
+        items.append((kind, path, a))
+    for kind, base, label, h1 in (("journal", "/journal", "Journal", "Journal"), ("work", "/work", "Work", "Work")):
+        mine = [(p, a) for k, p, a in items if k == kind]
+        if not mine:
+            continue
+        cards = "".join('<li><a href="%s"><b>%s</b></a><span class="k"> · %s</span><p class="sub">%s</p></li>' % (
+            p, e(a["h1"]), e(a.get("date", "")), e(a["description"])) for p, a in sorted(mine, key=lambda x: x[1].get("date", ""), reverse=True))
+        hero, cld = page_hero([("Home", "/"), (label, base)], label, h1,
+                              "Notes from MANA, a Melbourne talent management agency, on working with creators." if kind == "journal"
+                              else "Case studies from real campaigns by MANA's creators.")
+        body = hero + '<section class="pg-sec" style="padding-top:0"><div class="wrap"><ul class="list">%s</ul></div></section>' % cards + contact_section()
+        write_page(base, "%s | MANA" % label, "%s from MANA, a Melbourne influencer and talent management agency." % label, body, [cld], priority="0.6")
+
+
 def build_pages():
     for k in ("hugo", "kevin", "preston"):
         profile_page(k)
@@ -564,9 +609,18 @@ def build_pages():
     brands_page()
     ugc_page()
     about_page()
+    article_pages()
 
 
 PAGE_CSS = """
+/* articles */
+.prose{max-width:68ch}
+.prose h2{font-size:25px;margin:40px 0 12px}
+.prose p{color:var(--text-2);margin:0 0 16px}
+.prose .hl{margin:8px 0 16px}
+ul.list{list-style:none;display:flex;flex-direction:column;gap:24px;max-width:72ch}
+ul.list a{text-decoration:none}ul.list a:hover b{text-decoration:underline}
+ul.list b{font-size:20px}
 /* interior pages */
 .crumbs{font-size:13px;color:var(--label);margin-bottom:32px}.crumbs a{text-decoration:none}.crumbs a:hover{text-decoration:underline}
 .pg-hero{padding:48px 0 72px}

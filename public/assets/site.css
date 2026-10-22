@@ -149,6 +149,14 @@ section{padding:96px 0}
 /* 404 */
 .nf{padding:120px 0;min-height:60vh}
 .nf .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+/* articles */
+.prose{max-width:68ch}
+.prose h2{font-size:25px;margin:40px 0 12px}
+.prose p{color:var(--text-2);margin:0 0 16px}
+.prose .hl{margin:8px 0 16px}
+ul.list{list-style:none;display:flex;flex-direction:column;gap:24px;max-width:72ch}
+ul.list a{text-decoration:none}ul.list a:hover b{text-decoration:underline}
+ul.list b{font-size:20px}
 /* interior pages */
 .crumbs{font-size:13px;color:var(--label);margin-bottom:32px}.crumbs a{text-decoration:none}.crumbs a:hover{text-decoration:underline}
 .pg-hero{padding:48px 0 72px}
