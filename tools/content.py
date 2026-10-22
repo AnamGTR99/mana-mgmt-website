@@ -108,7 +108,7 @@ BRAND_LOGOS = [("Converse", "converse.png"), ("ASICS", "asics.svg"), ("Ultrahuma
                ("Starface", "starface.svg"), ("Named Collective", "named-collective.png"), ("D5 Render", "d5-render.png"),
                ("Chief", "chief.png"), ("Status Audio", "status-audio.svg"), ("Astropad", "astropad.svg"),
                ("Secretlab", "secretlab.png"), ("Meliora", "meliora.png"), ("Lowheads", "lowheads.png"),
-               ("Good Optiks", "good-optiks.svg"), ("Ultralight LDN", "ultralight.png"), ("Enscape", "enscape.svg"),
+               ("Good Optiks", "good-optiks.svg"), ("Ultralight LDN", "ultralight.png"), ("Enscape", "enscape.png"),
                ("Corel", "corel.svg"), ("Suapp", "suapp.png"), ("Element Brooklyn", "element-brooklyn.svg"),
                ("MakeUGC", "makeugc.png")]  # 8illy has no logo (YouTube channel), so it stays in BRANDS only
 
