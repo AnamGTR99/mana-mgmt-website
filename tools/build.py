@@ -37,18 +37,18 @@ CSS = r"""
 :root{
   --blue:#002FA7;--blue-deep:#00248A;--blue-tint:#EEF2FB;
   --text:#0A0A0A;--text-2:#52525B;--label:#71717A;
-  --bg:#FAFAFA;--card:#FFFFFF;--line:#E4E4E7;--err:#D2372B;
+  --bg:#FAFAFA;--card:#FFFFFF;--line:#E4E4E7;
   --f:'Archivo',system-ui,-apple-system,'Segoe UI',sans-serif;--fd:'Anton',Impact,sans-serif;
-  --maxw:1160px;--r:12px;
+  --maxw:1280px;--pad:clamp(16px,4vw,48px);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:80px}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:72px}
 body{background:var(--bg);color:var(--text);font:400 16px/1.6 var(--f);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 a{color:inherit}
 img{display:block;max-width:100%;height:auto}
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
 .skip{position:absolute;left:-9999px}.skip:focus{left:16px;top:16px;background:var(--card);padding:8px 12px;z-index:50}
-:focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:4px}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
 
 /* lockup: the one spaced-caps brand mark allowed */
 .lockup{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
@@ -57,137 +57,113 @@ img{display:block;max-width:100%;height:auto}
 .lk-s{font:600 9px/1 var(--f);letter-spacing:.2em;text-transform:uppercase;margin-top:4px}
 
 /* header */
-.hd{position:sticky;top:0;z-index:20;background:rgba(250,250,250,.92);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
+.hd{position:sticky;top:0;z-index:20;background:rgba(250,250,250,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 .hd .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:24px}
-.hd nav{display:flex;align-items:center;gap:28px}
-.hd nav a{font-size:15px;font-weight:500;color:var(--text-2);text-decoration:none}
-.hd nav a:hover{color:var(--text)}
-.hd nav a.btn-p,.hd nav a.btn-p:hover{color:#fff}
-@media(max-width:820px){.hd nav a.nl{display:none}}
+.hd nav{display:flex;gap:32px}
+.hd nav a{font-size:15px;font-weight:500;text-decoration:none;color:var(--text)}
+.hd nav a:hover{text-decoration:underline;text-underline-offset:4px}
+@media(max-width:640px){.hd nav{gap:20px}.hd nav a.nl{display:none}}
 
-/* buttons */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:600 16px/1 var(--f);padding:14px 20px;border-radius:999px;text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:background .2s,border-color .2s,color .2s}
-.btn-p{background:var(--blue);color:#fff}.btn-p:hover{background:var(--blue-deep)}
-.btn-s{background:transparent;color:var(--text);border-color:#D4D4D8}.btn-s:hover{border-color:var(--text)}
-.btn-sm{font-size:14px;padding:10px 16px}
+/* links and the one real button */
+.go{font-weight:600;font-size:16px;text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1.5px;text-decoration-color:var(--blue)}
+.go:hover{color:var(--blue)}
+.btn{display:inline-flex;align-items:center;justify-content:center;font:600 16px/1 var(--f);padding:16px 24px;border:0;border-radius:4px;background:var(--blue);color:#fff;cursor:pointer}
+.btn:hover{background:var(--blue-deep)}
 
 /* type */
-.eyebrow{font-size:13px;font-weight:600;color:var(--blue);margin-bottom:16px;display:block}
-h1{font-weight:700;font-size:clamp(39px,6vw,61px);line-height:1.04;letter-spacing:-.03em;max-width:15ch}
-h2{font-weight:700;font-size:clamp(31px,4vw,39px);line-height:1.12;letter-spacing:-.02em;max-width:22ch}
-h3{font-weight:700;font-size:20px;line-height:1.3;letter-spacing:-.01em}
-.lede{font-size:20px;line-height:1.55;color:var(--text-2);max-width:56ch;margin-top:24px}
-.lede b{color:var(--text);font-weight:600}
-.sub{font-size:16px;color:var(--text-2);max-width:60ch;margin-top:12px}
-.label{font-size:13px;color:var(--label)}
-section{padding:96px 0}
-@media(max-width:720px){section{padding:64px 0}}
-.sec-head{margin-bottom:48px}
+h1{font-weight:700;font-size:clamp(39px,7vw,76px);line-height:1;letter-spacing:-.035em}
+h2{font-weight:700;font-size:clamp(25px,3.2vw,39px);line-height:1.1;letter-spacing:-.025em}
+h3{font-weight:700;font-size:20px;line-height:1.25;letter-spacing:-.01em}
+.lede{font-size:clamp(18px,2vw,20px);line-height:1.5;color:var(--text-2);max-width:44ch}
+.k{font-size:13px;color:var(--label)}
+section{padding:112px 0}
+@media(max-width:720px){section{padding:72px 0}}
 
 /* hero */
-.hero{padding:72px 0 96px}
-.hero .wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:56px;align-items:center}
-.hero .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
-.hero .trust{margin-top:24px;font-size:14px;color:var(--label)}
-.stack{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.stack figure{border-radius:var(--r);overflow:hidden;background:#E4E4E7;aspect-ratio:4/5}
-.stack figure:nth-child(2){transform:translateY(32px)}
-.stack img{width:100%;height:100%;object-fit:cover}
-.stack figcaption{position:absolute;left:-9999px}
-@media(max-width:900px){.hero .wrap{grid-template-columns:minmax(0,1fr);gap:40px}.stack figure:nth-child(2){transform:none}}
+.hero{padding:56px 0 48px}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:end}
+.hero .lede{margin-bottom:6px}
+.hero .go{display:inline-block;margin-top:20px}
+@media(max-width:860px){.hero .wrap{grid-template-columns:minmax(0,1fr);gap:24px}}
 
+/* roster: big portraits */
+.roster{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.6vw,24px)}
+.cr{display:flex;flex-direction:column}
+.cr .ph{display:block;aspect-ratio:4/5;overflow:hidden;background:#E4E4E7}
+.cr .ph img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.cr .ph:hover img{transform:scale(1.03)}
+.cr h3{font-size:clamp(25px,2.6vw,31px);letter-spacing:-.025em;margin-top:16px}
+.cr .niche{color:var(--text-2);font-size:16px;margin-top:4px}
+.cr .ln{display:flex;gap:20px;margin-top:12px;font-size:15px}
+.cr .ln a{text-decoration:underline;text-underline-offset:4px;text-decoration-color:#A1A1AA}
+.cr .ln a:hover{text-decoration-color:var(--text)}
+@media(max-width:860px){.roster{grid-template-columns:minmax(0,1fr);gap:48px}}
 
-/* roster */
-.roster{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
-.cr{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
-.cr .ph{aspect-ratio:4/5;background:#E4E4E7}
-.cr .ph img{width:100%;height:100%;object-fit:cover}
-.cr .bd{padding:24px;display:flex;flex-direction:column;gap:12px;flex:1}
-.cr .niche{font-size:14px;font-weight:600;color:var(--blue)}
-.cr p{font-size:15px;color:var(--text-2)}
-.cr dl{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding-top:12px;border-top:1px solid var(--line);margin-top:auto}
-.cr dt{font-size:13px;color:var(--label);order:2}
-.cr dd{font-weight:700;font-size:20px;line-height:1.1;font-variant-numeric:tabular-nums}
-.cr dl div{display:flex;flex-direction:column;gap:4px}
-.cr .act{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:space-between}
-.cr .ig{font-size:14px;color:var(--text-2);text-decoration:none}.cr .ig:hover{color:var(--text);text-decoration:underline}
-@media(max-width:900px){.roster{grid-template-columns:minmax(0,1fr);max-width:520px}}
+/* work: grid of stills */
+.sec-h{display:flex;justify-content:space-between;align-items:baseline;gap:24px;margin-bottom:32px;flex-wrap:wrap}
+.work{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.6vw,24px) clamp(12px,1.6vw,24px)}
+.wk figure{margin:0}
+.wk .im{aspect-ratio:4/5;overflow:hidden;background:#18181B}
+.wk img{width:100%;height:100%;object-fit:cover}
+.wk figcaption{margin-top:12px;font-size:15px;line-height:1.4}
+.wk figcaption b{font-weight:600}
+.wk figcaption span{display:block;color:var(--text-2)}
+@media(max-width:860px){.work{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
-/* work */
-.work{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
-.cs{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
-.cs .vis{aspect-ratio:16/9;background:#F4F4F5;display:flex;align-items:flex-end;padding:20px;position:relative;overflow:hidden}
-.cs .vis img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.cs .vis .big{font-weight:700;font-size:49px;line-height:1;letter-spacing:-.03em;color:var(--blue);font-variant-numeric:tabular-nums}
-.cs .vis .big small{display:block;font-size:15px;font-weight:600;letter-spacing:0;color:var(--text-2);margin-top:8px}
-.cs .bd{padding:24px;display:flex;flex-direction:column;gap:12px;flex:1}
-.cs .who{font-size:13px;color:var(--label)}
-.cs p{font-size:15px;color:var(--text-2)}
-.cs ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:8px}
-.cs li{font-size:13px;font-weight:600;background:#F4F4F5;border-radius:999px;padding:6px 12px}
-@media(max-width:900px){.work{grid-template-columns:minmax(0,1fr);max-width:620px}}
+/* about */
+.brandline{font-weight:600;font-size:clamp(22px,2.6vw,31px);line-height:1.3;letter-spacing:-.02em;max-width:38ch}
+.brandline em{font-style:normal;color:var(--label)}
+.proof{font-size:18px;color:var(--text-2);max-width:60ch;margin-top:24px}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px;margin-top:80px;padding-top:32px;border-top:1px solid var(--line)}
+.two p{color:var(--text-2);margin-top:12px;max-width:52ch}
+.two .go{display:inline-block;margin-top:16px}
+@media(max-width:720px){.two{grid-template-columns:minmax(0,1fr);gap:40px;margin-top:56px}}
 
-/* brands */
-.brands{display:flex;flex-wrap:wrap;gap:8px 32px;margin-top:8px}
-.brands li{list-style:none;font-weight:600;font-size:20px;color:var(--text-2);letter-spacing:-.01em}
-
-/* process */
-.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;counter-reset:s}
-.st{border-top:2px solid var(--text);padding-top:16px}
-.st::before{counter-increment:s;content:counter(s);display:block;font-size:13px;font-weight:600;color:var(--label);margin-bottom:8px}
-.st p{font-size:15px;color:var(--text-2);margin-top:8px}
-.st:first-child{border-top-color:var(--blue)}
-@media(max-width:900px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:520px){.steps{grid-template-columns:minmax(0,1fr)}}
-
-/* creators band */
-.join{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:32px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
-.join p{color:var(--text-2);max-width:60ch;margin-top:8px}
-
-/* faq */
-.faq{max-width:780px}
-.faq details{border-bottom:1px solid var(--line);padding:20px 0}
-.faq summary{font-weight:600;font-size:18px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px}
+/* faq: folded, for readers and AI tools */
+.faq{margin-top:80px;max-width:820px}
+.faq h2{margin-bottom:16px}
+.faq details{border-bottom:1px solid var(--line);padding:18px 0}
+.faq summary{font-weight:600;font-size:17px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";font-weight:400;font-size:24px;line-height:1;color:var(--label)}
-.faq details[open] summary::after{content:"–"}
-.faq details p{color:var(--text-2);margin-top:12px;max-width:68ch}
+.faq summary::after{content:"+";font-weight:400;font-size:22px;line-height:1;color:var(--label)}
+.faq details[open] summary::after{content:"\2013"}
+.faq details p{color:var(--text-2);margin-top:10px;max-width:68ch}
 
 /* contact */
-.contact .wrap{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:56px;align-items:start}
-.contact .direct{margin-top:32px;display:flex;flex-direction:column;gap:8px;font-size:16px}
-.contact .direct a{color:var(--text);text-decoration:underline;text-underline-offset:3px;text-decoration-color:#A1A1AA}
-.form{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:32px}
+.contact .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:start}
+.contact .lede{margin-top:16px}
+.contact .mail{display:inline-block;margin-top:24px;font-weight:600;font-size:clamp(20px,2.4vw,25px);text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:2px;text-decoration-color:var(--blue)}
 .field{margin-bottom:20px}
-.field label{display:block;font-size:14px;font-weight:600;margin-bottom:8px}
+.field label{display:block;font-size:14px;font-weight:600;margin-bottom:6px}
 .field label span{font-weight:400;color:var(--label)}
-.field input,.field select,.field textarea{width:100%;font:400 16px/1.4 var(--f);color:var(--text);background:var(--card);border:1px solid #D4D4D8;border-radius:8px;padding:12px 14px}
-.field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2352525B' stroke-width='1.6' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
-.field textarea{min-height:120px;resize:vertical}
-.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,47,167,.15)}
-.row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field input,.field select,.field textarea{width:100%;font:400 16px/1.4 var(--f);color:var(--text);background:transparent;border:0;border-bottom:1.5px solid #A1A1AA;border-radius:0;padding:10px 0}
+.field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2352525B' stroke-width='1.6' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 2px center;padding-right:24px}
+.field textarea{min-height:96px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-bottom-color:var(--blue)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
 .hp{position:absolute;left:-9999px}
-.form .btn{width:100%;margin-top:4px}
+.form .btn{margin-top:8px}
 .form .note{font-size:13px;color:var(--label);margin-top:12px}
-.status{display:none;margin-top:16px;font-size:15px;padding:12px 14px;border-radius:8px}
+.status{display:none;margin-top:16px;font-size:15px;padding:12px 14px}
 .status.ok{display:block;background:var(--blue-tint);color:var(--blue)}
 .status.err{display:block;background:#FDECEA;color:#A1271D}
-@media(max-width:900px){.contact .wrap{grid-template-columns:minmax(0,1fr);gap:40px}}
-@media(max-width:520px){.row2{grid-template-columns:minmax(0,1fr)}.form{padding:24px}}
+@media(max-width:860px){.contact .wrap{grid-template-columns:minmax(0,1fr);gap:40px}}
+@media(max-width:520px){.row2{grid-template-columns:minmax(0,1fr);gap:0}}
 
 /* footer: a lockup surface, so full blue is allowed here */
-.ft{background:var(--blue);color:#fff;padding:64px 0 40px}
+.ft{background:var(--blue);color:#fff;padding:56px 0 32px}
 .ft .top{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap}
-.ft .blurb{max-width:40ch;color:#fff;font-size:15px;margin-top:16px}
+.ft .blurb{max-width:40ch;font-size:15px;margin-top:16px}
 .ft .cols{display:flex;gap:56px;flex-wrap:wrap}
-.ft h4{font-size:13px;font-weight:600;color:#fff;margin-bottom:12px}
-.ft .cols a{display:block;color:#fff;text-decoration:none;font-size:15px;margin-bottom:8px;opacity:1}
+.ft h4{font-size:13px;font-weight:600;margin-bottom:12px}
+.ft .cols a{display:block;color:#fff;text-decoration:none;font-size:15px;margin-bottom:8px}
 .ft .cols a:hover{text-decoration:underline}
-.ft .bot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,.25);font-size:13px;color:#fff}
+.ft .bot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,.25);font-size:13px}
 
 /* 404 */
 .nf{padding:120px 0;min-height:60vh}
-.nf .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+.nf .lede{margin-top:24px}
+.nf .go{display:inline-block;margin-top:24px;margin-right:24px}
 """
 
 JS = r"""
@@ -257,10 +233,10 @@ def head(title, desc, path, jsonld=None, og_image="/assets/og/home.png"):
 
 
 def header():
-    links = "".join('<a class="nl" href="%s">%s</a>' % (h, e(t)) for h, t in C.NAV)
+    links = "".join('<a%s href="%s">%s</a>' % ("" if h.endswith("contact") else ' class="nl"', h, e(t)) for h, t in C.NAV)
     return """<header class="hd"><div class="wrap">
 <a href="/" aria-label="MANA, home">{lk}</a>
-<nav aria-label="Main">{links}<a class="btn btn-p btn-sm" href="/#contact" data-need="kit-all">Get a media kit</a></nav>
+<nav aria-label="Main">{links}</nav>
 </div></header>
 """.format(lk=lockup(), links=links)
 
@@ -292,7 +268,7 @@ def lead_form():
 <div class="field"><label for="need">What do you need?</label><select id="need" name="need">{opts}</select></div>
 <div class="field"><label for="f-msg">Brief, timing or budget <span>(optional)</span></label><textarea id="f-msg" name="message" placeholder="Product, what you want made, and when it should go live."></textarea></div>
 <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
-<button class="btn btn-p" type="submit">Send</button>
+<button class="btn" type="submit">Send</button>
 <div class="status" id="status" role="status" aria-live="polite"></div>
 <p class="note">We reply to every brand and creator, usually within a day. No mailing lists.</p>
 </form>""".format(opts=opts)
@@ -300,74 +276,53 @@ def lead_form():
 
 def home():
     h = C.HOME
-    pics = "".join('<figure><img src="/assets/img/%s.webp" alt="%s" width="800" height="1000"%s><figcaption>%s</figcaption></figure>' % (
-        c["slug"], e(c["photo_alt"]), "" if i == 0 else ' loading="lazy"', e(c["name"])) for i, c in enumerate(C.CREATORS))
     roster = []
-    for c in C.CREATORS:
-        stats = "".join("<div><dd>%s</dd><dt>%s</dt></div>" % (e(v), e(k)) for v, k in c["stats"])
+    for i, c in enumerate(C.CREATORS):
         roster.append("""<article class="cr" id="{slug}">
-<div class="ph"><img src="/assets/img/{slug}.webp" alt="{alt}" width="800" height="1000" loading="lazy"></div>
-<div class="bd"><span class="niche">{niche}</span><h3>{name}</h3><p>{blurb}</p>
-<dl>{stats}</dl>
-<div class="act"><a class="btn btn-s btn-sm" href="#contact" data-need="kit-{key}">Get {first}’s media kit</a><a class="ig" href="{ig}" rel="noopener">{handle} on Instagram</a></div>
-</div></article>""".format(slug=c["slug"], alt=e(c["photo_alt"]), niche=e(c["niche"]), name=e(c["name"]), blurb=e(c["blurb"]),
-                           stats=stats, key=c["key"], first=e(c["name"].split()[0]), ig=c["instagram"], handle=e(c["handle"])))
-    work = []
-    for w in C.WORK:
-        vis = ('<img src="/assets/img/%s" alt="%s" loading="lazy" width="960" height="540">' % (w["image"], e(w["image_alt"]))) if w.get("image") \
-            else '<div class="big">%s<small>%s</small></div>' % (e(w["big"]), e(w["big_label"]))
-        work.append("""<article class="cs"><div class="vis">{vis}</div><div class="bd">
-<span class="who">{who}</span><h3>{title}</h3><p>{body}</p><ul>{chips}</ul></div></article>""".format(
-            vis=vis, who=e(w["who"]), title=e(w["title"]), body=e(w["body"]), chips="".join("<li>%s</li>" % e(x) for x in w["chips"])))
-    brands = "".join("<li>%s</li>" % e(b) for b in C.BRANDS)
-    steps = "".join('<div class="st"><h3>%s</h3><p>%s</p></div>' % (e(t), e(b)) for t, b in C.STEPS)
+<a class="ph" href="{ig}" rel="noopener" aria-label="{name} on Instagram"><img src="/assets/img/{slug}.webp" alt="{alt}" width="800" height="1000"{lazy}></a>
+<h3>{name}</h3><p class="niche">{niche}</p>
+<p class="ln"><a href="{ig}" rel="noopener">{handle}</a><a href="#contact" data-need="kit-{key}">Media kit</a></p>
+</article>""".format(slug=c["slug"], ig=c["instagram"], name=e(c["name"]), alt=e(c["photo_alt"]), niche=e(c["niche"]),
+                     handle=e(c["handle"]), key=c["key"], lazy="" if i < 3 else ' loading="lazy"'))
+    work = "".join("""<div class="wk"><figure><div class="im"><img src="/assets/img/{img}" alt="{alt}" width="640" height="800" loading="lazy"></div>
+<figcaption><b>{brand}</b> · {creator}<span>{what}</span></figcaption></figure></div>""".format(
+        img=w["image"], alt=e(w["alt"]), brand=e(w["brand"]), creator=e(w["creator"]), what=e(w["what"])) for w in C.WORK)
+    brands = ", ".join(C.BRANDS[:-1]) + " and " + C.BRANDS[-1]
     faq = "".join("<details><summary>%s</summary><p>%s</p></details>" % (e(q), e(a)) for q, a in C.FAQ)
 
     body = """<main id="main">
 <section class="hero"><div class="wrap">
-<div>
-<span class="eyebrow">{eyebrow}</span>
 <h1>{h1}</h1>
-<p class="lede">{lede}</p>
-<div class="cta"><a class="btn btn-p" href="#contact" data-need="kit-all">Get a media kit</a><a class="btn btn-s" href="#contact" data-need="brief">Send a brief</a></div>
-<p class="trust">{trust}</p>
-</div>
-<div class="stack">{pics}</div>
+<div><p class="lede">{lede}</p><a class="go" href="#contact" data-need="kit-all">Get a media kit</a></div>
 </div></section>
 
-<section id="creators" style="padding-top:0"><div class="wrap">
-<div class="sec-head"><span class="eyebrow">The roster</span><h2>{roster_h}</h2><p class="sub">{roster_sub}</p></div>
+<section id="creators" style="padding-top:0" aria-label="Creators"><div class="wrap">
 <div class="roster">{roster}</div>
 </div></section>
 
 <section id="work" style="padding-top:0"><div class="wrap">
-<div class="sec-head"><span class="eyebrow">Selected work</span><h2>{work_h}</h2><p class="sub">{work_sub}</p></div>
+<div class="sec-h"><h2>Work</h2><span class="k">Recent campaigns and reels from the roster</span></div>
 <div class="work">{work}</div>
-<div style="margin-top:56px"><h3>Brands our creators have made work for</h3><ul class="brands">{brands}</ul></div>
 </div></section>
 
-<section id="process" style="padding-top:0"><div class="wrap">
-<div class="sec-head"><span class="eyebrow">For brands</span><h2>{proc_h}</h2><p class="sub">{proc_sub}</p></div>
-<div class="steps">{steps}</div>
-<div class="join" style="margin-top:56px"><div><h3>{join_h}</h3><p>{join_p}</p></div><a class="btn btn-s" href="#contact" data-need="creator">Apply for management</a></div>
-</div></section>
-
-<section id="faq" style="padding-top:0"><div class="wrap">
-<div class="sec-head"><span class="eyebrow">FAQ</span><h2>Questions brands ask us</h2></div>
-<div class="faq">{faq}</div>
+<section id="about" style="padding-top:0"><div class="wrap">
+<p class="brandline"><em>Our creators have made work for</em> {brands}.</p>
+<p class="proof">{proof}</p>
+<div class="two">
+<div><h3>{bh}</h3><p>{bp}</p><a class="go" href="#contact" data-need="brief">Send a brief</a></div>
+<div><h3>{ch}</h3><p>{cp}</p><a class="go" href="#contact" data-need="creator">Apply for management</a></div>
+</div>
+<div class="faq" id="faq"><h2>Questions</h2>{faq}</div>
 </div></section>
 
 <section class="contact" id="contact" style="padding-top:0"><div class="wrap">
-<div><span class="eyebrow">Work with us</span><h2>{contact_h}</h2><p class="sub">{contact_sub}</p>
-<div class="direct"><a href="mailto:shei@mana-mgmt.com">shei@mana-mgmt.com</a><a href="https://www.instagram.com/manamgmt/" rel="noopener">@manamgmt on Instagram</a></div></div>
+<div><h2>{contact_h}</h2><p class="lede">{contact_sub}</p><a class="mail" href="mailto:shei@mana-mgmt.com">shei@mana-mgmt.com</a></div>
 {form}
 </div></section>
 </main>
-""".format(eyebrow=e(h["eyebrow"]), h1=e(h["h1"]), lede=h["lede_html"], trust=e(h["trust"]), pics=pics,
-           roster_h=e(h["roster_h"]), roster_sub=e(h["roster_sub"]), roster="".join(roster),
-           work_h=e(h["work_h"]), work_sub=e(h["work_sub"]), work="".join(work), brands=brands,
-           proc_h=e(h["proc_h"]), proc_sub=e(h["proc_sub"]), steps=steps, join_h=e(h["join_h"]), join_p=e(h["join_p"]),
-           faq=faq, contact_h=e(h["contact_h"]), contact_sub=e(h["contact_sub"]), form=lead_form())
+""".format(h1=e(h["h1"]), lede=e(h["lede_html"]), roster="".join(roster), work=work, brands=e(brands), proof=e(h["proof"]),
+           bh=e(h["brands_h"]), bp=e(h["brands_p"]), ch=e(h["creators_h"]), cp=e(h["creators_p"]), faq=faq,
+           contact_h=e(h["contact_h"]), contact_sub=e(h["contact_sub"]), form=lead_form())
     return head(h["title"], h["description"], "/", jsonld_home()) + header() + body + footer()
 
 
@@ -406,7 +361,7 @@ def not_found():
     body = """<main id="main" class="nf"><div class="wrap">
 <span class="eyebrow">404</span><h1>That page isn’t here.</h1>
 <p class="lede">It may have moved while we rebuilt the site. Everything about our creators and how to work with us starts on the home page.</p>
-<div class="cta"><a class="btn btn-p" href="/">Go to the home page</a><a class="btn btn-s" href="/#contact">Contact us</a></div>
+<a class="go" href="/">Go to the home page</a><a class="go" href="/#contact">Contact us</a>
 </div></main>
 """
     h = head("Page not found | MANA", "This page doesn't exist on mana-mgmt.com.", "/404")
@@ -431,8 +386,8 @@ def llms():
         lines.append("- %s (%s, %s): %s" % (c["name"], c["handle"], c["niche"], c["blurb"]))
     lines += ["", "## Selected work"]
     for w in C.WORK:
-        lines.append("- %s, %s: %s (%s)" % (w["title"], w["who"], w["body"], ", ".join(w["chips"])))
-    lines += ["", "## Contact", "- Email: shei@mana-mgmt.com", "- Media kit or brief: %s/#contact" % SITE,
+        lines.append("- %s × %s: %s" % (w["brand"], w["creator"], w["what"]))
+    lines += ["", C.HOME["proof"], "", "Brands the creators have made work for: " + ", ".join(C.BRANDS) + ".", "", "## Contact", "- Email: shei@mana-mgmt.com", "- Media kit or brief: %s/#contact" % SITE,
               "- Instagram: https://www.instagram.com/manamgmt/", ""]
     return "\n".join(lines)
 
