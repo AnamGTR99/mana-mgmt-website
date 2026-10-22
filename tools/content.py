@@ -13,7 +13,7 @@ KNOWS_ABOUT = ["Talent management", "Creator management", "Influencer marketing"
 
 ORG_SAMEAS = ["https://www.instagram.com/manamgmt/"]
 
-NAV = [("/#creators", "Creators"), ("/#work", "Work"), ("/#process", "For brands"), ("/#faq", "FAQ")]
+NAV = [("/#creators", "Creators"), ("/#process", "For brands"), ("/#faq", "FAQ")]
 
 NEEDS = [
     ("kit-all", "Media kits for all creators"),
@@ -103,6 +103,15 @@ WORK = [
     },
 ]
 
+# Marquee logos (file in src/assets/logos/, or None to show the name as text). Same brands as BRANDS.
+BRAND_LOGOS = [("Converse", "converse.png"), ("ASICS", "asics.svg"), ("Ultrahuman", "ultrahuman.svg"),
+               ("Starface", "starface.svg"), ("Named Collective", "named-collective.png"), ("D5 Render", "d5-render.png"),
+               ("Chief", "chief.png"), ("Status Audio", "status-audio.svg"), ("Astropad", "astropad.svg"),
+               ("Secretlab", "secretlab.png"), ("Meliora", "meliora.png"), ("Lowheads", "lowheads.png"),
+               ("Good Optiks", "good-optiks.svg"), ("Ultralight LDN", "ultralight.png"), ("Enscape", "enscape.svg"),
+               ("Corel", "corel.svg"), ("Suapp", "suapp.png"), ("Element Brooklyn", "element-brooklyn.svg"),
+               ("MakeUGC", "makeugc.png")]  # 8illy has no logo (YouTube channel), so it stays in BRANDS only
+
 # Closed, public-safe partners across the roster (deal audit 20 Oct 2026, media kits). Oner is NDA: never add.
 BRANDS = ["Converse", "ASICS", "Ultrahuman", "Starface", "Named Collective", "Meliora", "Lowheads", "Good Optiks",
           "Ultralight LDN", "8illy", "D5 Render", "Enscape", "Corel", "Suapp", "Chief", "Status Audio", "Astropad",
@@ -146,6 +155,6 @@ FOOTER_BLURB = ("Talent management for content creators. Based in Melbourne, wor
 
 FOOTER = [
     ("Creators", [("Hugo Zbor", "/#hugo-zbor"), ("Kevin Chiang", "/#kevin-chiang"), ("Preston Young", "/#preston-young")]),
-    ("MANA", [("Work", "/#work"), ("For brands", "/#process"), ("FAQ", "/#faq"), ("Get a media kit", "/#contact")]),
+    ("MANA", [("For brands", "/#process"), ("FAQ", "/#faq"), ("Get a media kit", "/#contact")]),
     ("Contact", [("shei@mana-mgmt.com", "mailto:shei@mana-mgmt.com"), ("Instagram", "https://www.instagram.com/manamgmt/")]),
 ]

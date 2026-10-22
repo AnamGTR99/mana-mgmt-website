@@ -53,12 +53,13 @@ section{padding:96px 0}
 .hero .wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:56px;align-items:center}
 .hero .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
 .hero .trust{margin-top:24px;font-size:14px;color:var(--label)}
-.stack{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.stack figure{border-radius:var(--r);overflow:hidden;background:#E4E4E7;aspect-ratio:4/5}
-.stack figure:nth-child(2){transform:translateY(32px)}
-.stack img{width:100%;height:100%;object-fit:cover}
-.stack figcaption{position:absolute;left:-9999px}
-@media(max-width:900px){.hero .wrap{grid-template-columns:minmax(0,1fr);gap:40px}.stack figure:nth-child(2){transform:none}}
+.mark-wrap{display:flex;justify-content:center;align-items:center}
+.hero-mark{width:min(340px,100%);height:auto;aspect-ratio:1}
+.hero-mark path{stroke-dasharray:1;stroke-dashoffset:1;animation:weave 1.6s cubic-bezier(.7,0,.2,1) forwards}
+.hero-mark path:nth-child(1){animation-delay:.2s}.hero-mark path:nth-child(2){animation-delay:.45s}
+.hero-mark path:nth-child(3){animation-delay:.7s}.hero-mark path:nth-child(4){animation-delay:.95s}
+@keyframes weave{to{stroke-dashoffset:0}}
+@media(max-width:900px){.hero .wrap{grid-template-columns:minmax(0,1fr);gap:40px}.mark-wrap{justify-content:flex-start}.hero-mark{width:160px}}
 
 
 /* roster */
@@ -77,23 +78,19 @@ section{padding:96px 0}
 .cr .ig{font-size:14px;color:var(--text-2);text-decoration:none}.cr .ig:hover{color:var(--text);text-decoration:underline}
 @media(max-width:900px){.roster{grid-template-columns:minmax(0,1fr);max-width:520px}}
 
-/* work */
-.work{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
-.cs{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
-.cs .vis{aspect-ratio:16/10;background:#F4F4F5;display:flex;align-items:flex-end;padding:20px;position:relative;overflow:hidden}
-.cs .vis img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.cs .vis .big{font-weight:700;font-size:49px;line-height:1;letter-spacing:-.03em;color:var(--blue);font-variant-numeric:tabular-nums}
-.cs .vis .big small{display:block;font-size:15px;font-weight:600;letter-spacing:0;color:var(--text-2);margin-top:8px}
-.cs .bd{padding:24px;display:flex;flex-direction:column;gap:12px;flex:1}
-.cs .who{font-size:13px;color:var(--label)}
-.cs p{font-size:15px;color:var(--text-2)}
-.cs ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:8px}
-.cs li{font-size:13px;font-weight:600;background:#F4F4F5;border-radius:999px;padding:6px 12px}
-@media(max-width:900px){.work{grid-template-columns:minmax(0,1fr);max-width:620px}}
-
-/* brands */
-.brands{display:flex;flex-wrap:wrap;gap:8px 32px;margin-top:8px}
-.brands li{list-style:none;font-weight:600;font-size:20px;color:var(--text-2);letter-spacing:-.01em}
+/* brand marquee */
+.brands-mq{padding:8px 0 96px}
+.mq-h{text-align:center;font-size:13px;color:var(--label);margin-bottom:24px}
+.mq{display:flex;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.mq+.mq{margin-top:16px}
+.mq-t{display:flex;flex:none;list-style:none;animation:mq 45s linear infinite}
+.mq-t.rev{animation-direction:reverse}
+.mq:hover .mq-t{animation-play-state:paused}
+.mq-i{flex:none;height:56px;padding:0 36px;display:flex;align-items:center}
+.mq-i img{height:30px;width:auto;max-width:150px;object-fit:contain;filter:grayscale(1) brightness(0);opacity:.6}
+.mq-i span{font-weight:700;font-size:20px;letter-spacing:-.01em;color:#52525B}
+@keyframes mq{to{transform:translateX(-100%)}}
+@media(prefers-reduced-motion:reduce){.mq-t{animation:none}.mq-t[aria-hidden]{display:none}.mq{flex-wrap:wrap;justify-content:center;-webkit-mask-image:none;mask-image:none}.hero-mark path{animation:none;stroke-dashoffset:0}}
 
 /* process */
 .steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;counter-reset:s}

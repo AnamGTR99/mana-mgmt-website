@@ -89,12 +89,13 @@ section{padding:96px 0}
 .hero .wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:56px;align-items:center}
 .hero .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
 .hero .trust{margin-top:24px;font-size:14px;color:var(--label)}
-.stack{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.stack figure{border-radius:var(--r);overflow:hidden;background:#E4E4E7;aspect-ratio:4/5}
-.stack figure:nth-child(2){transform:translateY(32px)}
-.stack img{width:100%;height:100%;object-fit:cover}
-.stack figcaption{position:absolute;left:-9999px}
-@media(max-width:900px){.hero .wrap{grid-template-columns:minmax(0,1fr);gap:40px}.stack figure:nth-child(2){transform:none}}
+.mark-wrap{display:flex;justify-content:center;align-items:center}
+.hero-mark{width:min(340px,100%);height:auto;aspect-ratio:1}
+.hero-mark path{stroke-dasharray:1;stroke-dashoffset:1;animation:weave 1.6s cubic-bezier(.7,0,.2,1) forwards}
+.hero-mark path:nth-child(1){animation-delay:.2s}.hero-mark path:nth-child(2){animation-delay:.45s}
+.hero-mark path:nth-child(3){animation-delay:.7s}.hero-mark path:nth-child(4){animation-delay:.95s}
+@keyframes weave{to{stroke-dashoffset:0}}
+@media(max-width:900px){.hero .wrap{grid-template-columns:minmax(0,1fr);gap:40px}.mark-wrap{justify-content:flex-start}.hero-mark{width:160px}}
 
 
 /* roster */
@@ -113,23 +114,19 @@ section{padding:96px 0}
 .cr .ig{font-size:14px;color:var(--text-2);text-decoration:none}.cr .ig:hover{color:var(--text);text-decoration:underline}
 @media(max-width:900px){.roster{grid-template-columns:minmax(0,1fr);max-width:520px}}
 
-/* work */
-.work{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
-.cs{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
-.cs .vis{aspect-ratio:16/10;background:#F4F4F5;display:flex;align-items:flex-end;padding:20px;position:relative;overflow:hidden}
-.cs .vis img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.cs .vis .big{font-weight:700;font-size:49px;line-height:1;letter-spacing:-.03em;color:var(--blue);font-variant-numeric:tabular-nums}
-.cs .vis .big small{display:block;font-size:15px;font-weight:600;letter-spacing:0;color:var(--text-2);margin-top:8px}
-.cs .bd{padding:24px;display:flex;flex-direction:column;gap:12px;flex:1}
-.cs .who{font-size:13px;color:var(--label)}
-.cs p{font-size:15px;color:var(--text-2)}
-.cs ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:8px}
-.cs li{font-size:13px;font-weight:600;background:#F4F4F5;border-radius:999px;padding:6px 12px}
-@media(max-width:900px){.work{grid-template-columns:minmax(0,1fr);max-width:620px}}
-
-/* brands */
-.brands{display:flex;flex-wrap:wrap;gap:8px 32px;margin-top:8px}
-.brands li{list-style:none;font-weight:600;font-size:20px;color:var(--text-2);letter-spacing:-.01em}
+/* brand marquee */
+.brands-mq{padding:8px 0 96px}
+.mq-h{text-align:center;font-size:13px;color:var(--label);margin-bottom:24px}
+.mq{display:flex;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.mq+.mq{margin-top:16px}
+.mq-t{display:flex;flex:none;list-style:none;animation:mq 45s linear infinite}
+.mq-t.rev{animation-direction:reverse}
+.mq:hover .mq-t{animation-play-state:paused}
+.mq-i{flex:none;height:56px;padding:0 36px;display:flex;align-items:center}
+.mq-i img{height:30px;width:auto;max-width:150px;object-fit:contain;filter:grayscale(1) brightness(0);opacity:.6}
+.mq-i span{font-weight:700;font-size:20px;letter-spacing:-.01em;color:#52525B}
+@keyframes mq{to{transform:translateX(-100%)}}
+@media(prefers-reduced-motion:reduce){.mq-t{animation:none}.mq-t[aria-hidden]{display:none}.mq{flex-wrap:wrap;justify-content:center;-webkit-mask-image:none;mask-image:none}.hero-mark path{animation:none;stroke-dashoffset:0}}
 
 /* process */
 .steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;counter-reset:s}
@@ -300,8 +297,15 @@ def lead_form():
 
 def home():
     h = C.HOME
-    pics = "".join('<figure><img src="/assets/img/%s.webp" alt="%s" width="800" height="1000"%s><figcaption>%s</figcaption></figure>' % (
-        c["slug"], e(c["photo_alt"]), "" if i == 0 else ' loading="lazy"', e(c["name"])) for i, c in enumerate(C.CREATORS))
+    hero_mark = '<svg class="hero-mark" viewBox="0 0 200 200" role="img" aria-label="MANA mark">%s</svg>' % MARK_PATHS.replace("<path ", '<path pathLength="1" ')
+    logos = []
+    for name, f in C.BRAND_LOGOS:
+        logos.append('<li class="mq-i">%s</li>' % (
+            '<img src="/assets/logos/%s" alt="%s" loading="lazy" height="32">' % (f, e(name)) if f else '<span>%s</span>' % e(name)))
+    half = (len(logos) + 1) // 2
+    def track(items, rev=""):
+        return '<div class="mq"><ul class="mq-t%s">%s</ul><ul class="mq-t%s" aria-hidden="true">%s</ul></div>' % (rev, "".join(items), rev, "".join(items))
+    marquee = track(logos[:half]) + track(logos[half:], " rev")
     roster = []
     for c in C.CREATORS:
         stats = "".join("<div><dd>%s</dd><dt>%s</dt></div>" % (e(v), e(k)) for v, k in c["stats"])
@@ -312,14 +316,6 @@ def home():
 <div class="act"><a class="btn btn-s btn-sm" href="#contact" data-need="kit-{key}">Get {first}’s media kit</a><a class="ig" href="{ig}" rel="noopener">{handle} on Instagram</a></div>
 </div></article>""".format(slug=c["slug"], alt=e(c["photo_alt"]), niche=e(c["niche"]), name=e(c["name"]), blurb=e(c["blurb"]),
                            stats=stats, key=c["key"], first=e(c["name"].split()[0]), ig=c["instagram"], handle=e(c["handle"])))
-    work = []
-    for w in C.WORK:
-        vis = ('<img src="/assets/img/%s" alt="%s" loading="lazy" width="960" height="540">' % (w["image"], e(w["image_alt"]))) if w.get("image") \
-            else '<div class="big">%s<small>%s</small></div>' % (e(w["big"]), e(w["big_label"]))
-        work.append("""<article class="cs"><div class="vis">{vis}</div><div class="bd">
-<span class="who">{who}</span><h3>{title}</h3><ul>{chips}</ul></div></article>""".format(
-            vis=vis, who=e(w["who"]), title=e(w["title"]), body=e(w["body"]), chips="".join("<li>%s</li>" % e(x) for x in w["chips"])))
-    brands = "".join("<li>%s</li>" % e(b) for b in C.BRANDS)
     steps = "".join('<div class="st"><h3>%s</h3><p>%s</p></div>' % (e(t), e(b)) for t, b in C.STEPS)
     faq = "".join("<details><summary>%s</summary><p>%s</p></details>" % (e(q), e(a)) for q, a in C.FAQ)
 
@@ -330,20 +326,18 @@ def home():
 <h1>{h1}</h1>
 <p class="lede">{lede}</p>
 <div class="cta"><a class="btn btn-p" href="#contact" data-need="kit-all">Get a media kit</a><a class="btn btn-s" href="#contact" data-need="brief">Send a brief</a></div>
-<p class="trust">{trust}</p>
 </div>
-<div class="stack">{pics}</div>
+<div class="mark-wrap">{hero_mark}</div>
 </div></section>
+
+<section class="brands-mq" aria-label="Brands our creators have worked with">
+<p class="mq-h">Our creators have worked with</p>
+{marquee}
+</section>
 
 <section id="creators" style="padding-top:0"><div class="wrap">
 <div class="sec-head"><h2>{roster_h}</h2></div>
 <div class="roster">{roster}</div>
-</div></section>
-
-<section id="work" style="padding-top:0"><div class="wrap">
-<div class="sec-head"><h2>{work_h}</h2></div>
-<div class="work">{work}</div>
-<div style="margin-top:56px"><h3>Brands our creators have made work for</h3><ul class="brands">{brands}</ul></div>
 </div></section>
 
 <section id="process" style="padding-top:0"><div class="wrap">
@@ -363,9 +357,8 @@ def home():
 {form}
 </div></section>
 </main>
-""".format(eyebrow=e(h["eyebrow"]), h1=e(h["h1"]), lede=h["lede_html"], trust=e(h["trust"]), pics=pics,
+""".format(eyebrow=e(h["eyebrow"]), h1=e(h["h1"]), lede=h["lede_html"], trust=e(h["trust"]), hero_mark=hero_mark, marquee=marquee,
            roster_h=e(h["roster_h"]), roster_sub=e(h["roster_sub"]), roster="".join(roster),
-           work_h=e(h["work_h"]), work_sub=e(h["work_sub"]), work="".join(work), brands=brands,
            proc_h=e(h["proc_h"]), proc_sub=e(h["proc_sub"]), steps=steps, join_h=e(h["join_h"]), join_p=e(h["join_p"]),
            faq=faq, contact_h=e(h["contact_h"]), contact_sub=e(h["contact_sub"]), form=lead_form())
     return head(h["title"], h["description"], "/", jsonld_home()) + header() + body + footer()
@@ -443,6 +436,7 @@ def main():
     (OUT / "assets").mkdir(parents=True)
     shutil.copytree(SRC / "assets/img", OUT / "assets/img")
     shutil.copytree(SRC / "assets/brand", OUT / "assets/brand")
+    shutil.copytree(SRC / "assets/logos", OUT / "assets/logos")
     if (SRC / "assets/og").exists():
         shutil.copytree(SRC / "assets/og", OUT / "assets/og")
     for name in ("favicon.svg", "apple-touch-icon.png"):
