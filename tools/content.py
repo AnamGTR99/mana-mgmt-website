@@ -27,7 +27,7 @@ NEEDS = [
 
 CREATORS = [
     {
-        "key": "hugo", "slug": "hugo-zbor", "name": "Hugo Zbor", "handle": "@hugozbor",
+        "key": "hugo", "slug": "hugo-zbor", "followers": "64K", "name": "Hugo Zbor", "handle": "@hugozbor",
         "instagram": "https://www.instagram.com/hugozbor/",
         "niche": "Creative direction, green-screen and 3D",
         "job_title": "Creative director and content creator",
@@ -38,7 +38,7 @@ CREATORS = [
         "same_as": ["https://www.instagram.com/hugozbor/", "https://www.tiktok.com/@hugozbor", "https://hugozbor.com"],
     },
     {
-        "key": "kevin", "slug": "kevin-chiang", "name": "Kevin Chiang", "handle": "@kevnchiang",
+        "key": "kevin", "slug": "kevin-chiang", "followers": "14K", "name": "Kevin Chiang", "handle": "@kevnchiang",
         "instagram": "https://www.instagram.com/kevnchiang/",
         "niche": "Architecture, design and lifestyle",
         "job_title": "Architecture and design content creator",
@@ -49,7 +49,7 @@ CREATORS = [
         "same_as": ["https://www.instagram.com/kevnchiang/", "https://www.bykevinchiang.com"],
     },
     {
-        "key": "preston", "slug": "preston-young", "name": "Preston Young", "handle": "@by.preston",
+        "key": "preston", "slug": "preston-young", "followers": "23K", "name": "Preston Young", "handle": "@by.preston",
         "instagram": "https://www.instagram.com/by.preston/",
         "niche": "Life lessons, lifestyle and self-growth",
         "job_title": "Lifestyle and self-growth content creator",
@@ -278,6 +278,7 @@ CREATORS_PAGE = {
     "h1": "Australian content creators, managed by MANA.",
     "lede": ("MANA represents three Melbourne-based content creators and influencers, each with an audience that watches to "
              "the end. Every creator has a media kit with audience data; ask for it and we reply within a day."),
+    "followers_note": "Instagram follower counts, updated October 2026.",
     "fit_h": "Which creator fits your brand?",
     "fit": [("Design software, apps, tech, desk setups", "Kevin Chiang"),
             ("Drops, campaign films, streetwear, footwear, music", "Hugo Zbor"),

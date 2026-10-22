@@ -490,16 +490,16 @@ def creators_page():
     d = C.CREATORS_PAGE
     hero, cld = page_hero([("Home", "/"), ("Creators", "/creators")], d["eyebrow"], d["h1"], d["lede"])
     cards = "".join("""<article class="cr"><a class="ph" href="/creators/{slug}"><img src="/assets/img/{slug}.webp" alt="{alt}" width="800" height="1000" loading="lazy"></a>
-<div class="bd"><span class="niche">{niche}</span><h3><a href="/creators/{slug}">{name}</a></h3><p>{blurb}</p>
+<div class="bd"><span class="niche">{niche}</span><h3><a href="/creators/{slug}">{name}</a></h3><p class="fol"><b>{fol}</b> followers on Instagram</p><p>{blurb}</p>
 <div class="act"><a class="btn btn-s btn-sm" href="/creators/{slug}">View profile</a><a class="ig" href="{ig}" rel="noopener">{handle}</a></div></div></article>""".format(
-        slug=c["slug"], alt=e(c["photo_alt"]), niche=e(c["niche"]), name=e(c["name"]), blurb=e(c["blurb"]), ig=c["instagram"], handle=e(c["handle"]))
-        for c in C.CREATORS)
+        slug=c["slug"], alt=e(c["photo_alt"]), niche=e(c["niche"]), name=e(c["name"]), blurb=e(c["blurb"]), ig=c["instagram"], handle=e(c["handle"]),
+        fol=e(c["followers"])) for c in C.CREATORS)
     fit = "".join('<div><dt>%s</dt><dd><a href="/creators/%s">%s</a></dd></div>' % (
         e(k), next(c["slug"] for c in C.CREATORS if c["name"] == v), e(v)) for k, v in d["fit"])
     fq, fld = faq_block(d["faq"])
-    body = hero + """<section class="pg-sec" style="padding-top:0"><div class="wrap"><div class="roster">{cards}</div></div></section>
+    body = hero + """<section class="pg-sec" style="padding-top:0"><div class="wrap"><div class="roster">{cards}</div><p class="k" style="margin-top:16px">{fnote}</p></div></section>
 <section class="pg-sec"><div class="wrap"><h2>{fit_h}</h2><dl class="facts wide">{fit}</dl></div></section>{fq}""".format(
-        cards=cards, fit_h=e(d["fit_h"]), fit=fit, fq=fq) + contact_section("Get the media kits")
+        cards=cards, fnote=e(d["followers_note"]), fit_h=e(d["fit_h"]), fit=fit, fq=fq) + contact_section("Get the media kits")
     items = {"@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": SITE + "/creators/" + c["slug"], "name": c["name"]}
                                                        for i, c in enumerate(C.CREATORS)]}
     write_page("/creators", d["title"], d["description"], body, [items, cld, fld], og="/assets/og/creators.png", priority="0.9")
@@ -592,6 +592,8 @@ PAGE_CSS = """
 .gal figcaption{font-size:14px;margin-top:8px;line-height:1.35}.gal figcaption b{display:block}.gal figcaption span{color:var(--text-2)}
 .cr .bd h3 a{text-decoration:none}.cr .bd h3 a:hover{text-decoration:underline}
 .cr .bd p{font-size:15px;color:var(--text-2)}
+.cr .bd p.fol{font-size:16px;color:var(--text)}.cr .bd p.fol b{font-weight:700}
+.k{font-size:13px;color:var(--label)}
 .logo-grid{list-style:none;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:center}
 .logo-grid img{height:28px;width:auto;max-width:140px;object-fit:contain;filter:grayscale(1) brightness(0);opacity:.6}
 .tbl{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--card)}

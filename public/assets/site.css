@@ -175,6 +175,8 @@ section{padding:96px 0}
 .gal figcaption{font-size:14px;margin-top:8px;line-height:1.35}.gal figcaption b{display:block}.gal figcaption span{color:var(--text-2)}
 .cr .bd h3 a{text-decoration:none}.cr .bd h3 a:hover{text-decoration:underline}
 .cr .bd p{font-size:15px;color:var(--text-2)}
+.cr .bd p.fol{font-size:16px;color:var(--text)}.cr .bd p.fol b{font-weight:700}
+.k{font-size:13px;color:var(--label)}
 .logo-grid{list-style:none;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:center}
 .logo-grid img{height:28px;width:auto;max-width:140px;object-fit:contain;filter:grayscale(1) brightness(0);opacity:.6}
 .tbl{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--card)}
