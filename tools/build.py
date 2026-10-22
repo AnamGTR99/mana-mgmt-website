@@ -231,6 +231,7 @@ def head(title, desc, path, jsonld=None, og_image="/assets/og/home.png"):
 <link rel="canonical" href="{u}">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="theme-color" content="#FAFAFA">
+<meta name="msvalidate.01" content="E5E83209B8B84CB8140DED09339AA5A9">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="website">
