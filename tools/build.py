@@ -82,7 +82,7 @@ h3{font-weight:700;font-size:20px;line-height:1.3;letter-spacing:-.01em}
 .label{font-size:13px;color:var(--label)}
 section{padding:96px 0}
 @media(max-width:720px){section{padding:64px 0}}
-.sec-head{margin-bottom:48px}
+.sec-head{margin-bottom:32px}
 
 /* hero */
 .hero{padding:72px 0 96px}
@@ -116,7 +116,7 @@ section{padding:96px 0}
 /* work */
 .work{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
 .cs{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
-.cs .vis{aspect-ratio:16/9;background:#F4F4F5;display:flex;align-items:flex-end;padding:20px;position:relative;overflow:hidden}
+.cs .vis{aspect-ratio:16/10;background:#F4F4F5;display:flex;align-items:flex-end;padding:20px;position:relative;overflow:hidden}
 .cs .vis img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .cs .vis .big{font-weight:700;font-size:49px;line-height:1;letter-spacing:-.03em;color:var(--blue);font-variant-numeric:tabular-nums}
 .cs .vis .big small{display:block;font-size:15px;font-weight:600;letter-spacing:0;color:var(--text-2);margin-top:8px}
@@ -294,7 +294,7 @@ def lead_form():
 <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
 <button class="btn btn-p" type="submit">Send</button>
 <div class="status" id="status" role="status" aria-live="polite"></div>
-<p class="note">We reply to every brand and creator, usually within a day. No mailing lists.</p>
+<p class="note">We usually reply within a day.</p>
 </form>""".format(opts=opts)
 
 
@@ -307,7 +307,7 @@ def home():
         stats = "".join("<div><dd>%s</dd><dt>%s</dt></div>" % (e(v), e(k)) for v, k in c["stats"])
         roster.append("""<article class="cr" id="{slug}">
 <div class="ph"><img src="/assets/img/{slug}.webp" alt="{alt}" width="800" height="1000" loading="lazy"></div>
-<div class="bd"><span class="niche">{niche}</span><h3>{name}</h3><p>{blurb}</p>
+<div class="bd"><span class="niche">{niche}</span><h3>{name}</h3>
 <dl>{stats}</dl>
 <div class="act"><a class="btn btn-s btn-sm" href="#contact" data-need="kit-{key}">Get {first}’s media kit</a><a class="ig" href="{ig}" rel="noopener">{handle} on Instagram</a></div>
 </div></article>""".format(slug=c["slug"], alt=e(c["photo_alt"]), niche=e(c["niche"]), name=e(c["name"]), blurb=e(c["blurb"]),
@@ -317,7 +317,7 @@ def home():
         vis = ('<img src="/assets/img/%s" alt="%s" loading="lazy" width="960" height="540">' % (w["image"], e(w["image_alt"]))) if w.get("image") \
             else '<div class="big">%s<small>%s</small></div>' % (e(w["big"]), e(w["big_label"]))
         work.append("""<article class="cs"><div class="vis">{vis}</div><div class="bd">
-<span class="who">{who}</span><h3>{title}</h3><p>{body}</p><ul>{chips}</ul></div></article>""".format(
+<span class="who">{who}</span><h3>{title}</h3><ul>{chips}</ul></div></article>""".format(
             vis=vis, who=e(w["who"]), title=e(w["title"]), body=e(w["body"]), chips="".join("<li>%s</li>" % e(x) for x in w["chips"])))
     brands = "".join("<li>%s</li>" % e(b) for b in C.BRANDS)
     steps = "".join('<div class="st"><h3>%s</h3><p>%s</p></div>' % (e(t), e(b)) for t, b in C.STEPS)
@@ -336,29 +336,29 @@ def home():
 </div></section>
 
 <section id="creators" style="padding-top:0"><div class="wrap">
-<div class="sec-head"><span class="eyebrow">The roster</span><h2>{roster_h}</h2><p class="sub">{roster_sub}</p></div>
+<div class="sec-head"><h2>{roster_h}</h2></div>
 <div class="roster">{roster}</div>
 </div></section>
 
 <section id="work" style="padding-top:0"><div class="wrap">
-<div class="sec-head"><span class="eyebrow">Selected work</span><h2>{work_h}</h2><p class="sub">{work_sub}</p></div>
+<div class="sec-head"><h2>{work_h}</h2></div>
 <div class="work">{work}</div>
 <div style="margin-top:56px"><h3>Brands our creators have made work for</h3><ul class="brands">{brands}</ul></div>
 </div></section>
 
 <section id="process" style="padding-top:0"><div class="wrap">
-<div class="sec-head"><span class="eyebrow">For brands</span><h2>{proc_h}</h2><p class="sub">{proc_sub}</p></div>
+<div class="sec-head"><h2>{proc_h}</h2></div>
 <div class="steps">{steps}</div>
-<div class="join" style="margin-top:56px"><div><h3>{join_h}</h3><p>{join_p}</p></div><a class="btn btn-s" href="#contact" data-need="creator">Apply for management</a></div>
+<div class="join" style="margin-top:56px"><h3>{join_h}</h3><a class="btn btn-s" href="#contact" data-need="creator">Apply for management</a></div>
 </div></section>
 
 <section id="faq" style="padding-top:0"><div class="wrap">
-<div class="sec-head"><span class="eyebrow">FAQ</span><h2>Questions brands ask us</h2></div>
+<div class="sec-head"><h2>Questions</h2></div>
 <div class="faq">{faq}</div>
 </div></section>
 
 <section class="contact" id="contact" style="padding-top:0"><div class="wrap">
-<div><span class="eyebrow">Work with us</span><h2>{contact_h}</h2><p class="sub">{contact_sub}</p>
+<div><h2>{contact_h}</h2><p class="sub">{contact_sub}</p>
 <div class="direct"><a href="mailto:shei@mana-mgmt.com">shei@mana-mgmt.com</a><a href="https://www.instagram.com/manamgmt/" rel="noopener">@manamgmt on Instagram</a></div></div>
 {form}
 </div></section>

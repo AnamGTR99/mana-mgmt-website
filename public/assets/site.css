@@ -46,7 +46,7 @@ h3{font-weight:700;font-size:20px;line-height:1.3;letter-spacing:-.01em}
 .label{font-size:13px;color:var(--label)}
 section{padding:96px 0}
 @media(max-width:720px){section{padding:64px 0}}
-.sec-head{margin-bottom:48px}
+.sec-head{margin-bottom:32px}
 
 /* hero */
 .hero{padding:72px 0 96px}
@@ -80,7 +80,7 @@ section{padding:96px 0}
 /* work */
 .work{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
 .cs{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
-.cs .vis{aspect-ratio:16/9;background:#F4F4F5;display:flex;align-items:flex-end;padding:20px;position:relative;overflow:hidden}
+.cs .vis{aspect-ratio:16/10;background:#F4F4F5;display:flex;align-items:flex-end;padding:20px;position:relative;overflow:hidden}
 .cs .vis img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .cs .vis .big{font-weight:700;font-size:49px;line-height:1;letter-spacing:-.03em;color:var(--blue);font-variant-numeric:tabular-nums}
 .cs .vis .big small{display:block;font-size:15px;font-weight:600;letter-spacing:0;color:var(--text-2);margin-top:8px}

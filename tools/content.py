@@ -67,19 +67,19 @@ HOME = {
                     "Hugo Zbor, Kevin Chiang and Preston Young and run brand partnerships end to end."),
     "eyebrow": "Influencer and talent management · Melbourne, Australia",
     "h1": "Creators whose content gets watched, managed properly.",
-    "lede_html": ("<b>MANA is an influencer and talent management agency in Melbourne, Australia.</b> "
-                  "We represent Hugo Zbor, Kevin Chiang and Preston Young and run their brand deals from brief to final post."),
+    "lede_html": ("<b>MANA is an influencer and talent management agency in Melbourne, Australia</b>, "
+                  "representing Hugo Zbor, Kevin Chiang and Preston Young."),
     "trust": "Worked with Converse, ASICS, Ultrahuman, D5 Render, Chief and more.",
-    "roster_h": "Three creators. Audiences that watch to the end.",
+    "roster_h": "Our creators",
     "roster_sub": "A small roster, so every creator gets real management.",
-    "work_h": "Results from real campaigns.",
+    "work_h": "Selected work",
     "work_sub": "Organic numbers from Instagram insights. No paid boosts.",
-    "proc_h": "How a campaign runs with MANA.",
+    "proc_h": "How it works",
     "proc_sub": "One point of contact from first email to final post.",
     "join_h": "Creators: looking for management?",
     "join_p": "We take on a few creators at a time and handle the brand side for them.",
-    "contact_h": "Get a media kit or send a brief.",
-    "contact_sub": "Tell us who you’re interested in. We’ll reply with the media kit and options for your campaign.",
+    "contact_h": "Get a media kit",
+    "contact_sub": "We’ll reply with the media kit, usually within a day.",
 }
 
 WORK = [
