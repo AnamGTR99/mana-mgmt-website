@@ -1,0 +1,78 @@
+{
+  "slug": "how-to-brief-a-creator",
+  "kind": "journal",
+  "title": "How to brief a creator: what to put in writing | MANA",
+  "description": "What to put in writing before a creator films: the message, the deliverables, usage rights, exclusivity, dates and one approver. A one-page brief.",
+  "h1": "How to brief a creator: what to put in writing before anything is filmed",
+  "eyebrow": "Working with creators",
+  "lede": "A creator brief should fix six things in writing before anything is filmed: the message, the deliverables, the usage rights, the dates, the claims you cannot make, and the one person who signs off. Leave the script, the setting and the jokes to the creator, and say so in the brief.",
+  "date": "2026-10-25",
+  "sections": [
+    {
+      "h2": "What should a creator brief actually contain?",
+      "body": [
+        "Most briefs fail in one of two directions. They are either a mood board with no obligations, or a twelve-page deck that scripts every second and still forgets to say when the content goes live. The useful version is one page a creator can read on their phone and a lawyer can check in five minutes. Write it as a list of decisions, not as a pitch for your own product.",
+        "Put this in writing before anything is filmed:",
+        "If a line on that list is still open, it is not a brief yet. It is a conversation, and conversations get remembered differently by each side once the footage exists."
+      ],
+      "bullets": [
+        "The one message: a single sentence the audience should come away with.",
+        "The deliverables: format, how many, which platform, and who posts.",
+        "The must-say and the must-not-say: claims you are allowed to make, and the ones your legal team will reject.",
+        "Product access: what arrives, when it arrives, and who covers freight.",
+        "Usage rights: where the content can run, for how long, and whether you want it as an ad.",
+        "Exclusivity: the category you want held, and for how many months.",
+        "Dates: draft due, feedback due, live date.",
+        "Revisions: how many rounds, and what counts as a round.",
+        "One approver: the name of the person whose yes is final."
+      ]
+    },
+    {
+      "h2": "Why shouldn't you write the script?",
+      "body": [
+        "The reach you are buying is a product of the creator's own format: their hook, their pacing, their edit. One creator on the MANA roster averages 40,000 views a reel, with 92 per cent of that reach coming from people who do not follow him. Another averages 81,000 views a reel at 86.6 per cent non-follower reach, with six reels past 750,000 views in twelve months.",
+        "Those numbers come from work the audience already accepts. A script written inside a brand deck asks the creator to post something their audience has never seen them post, which is the one part of the deal you have no data for. Brief the message, approve the opening line if you need to, and leave the rest."
+      ]
+    },
+    {
+      "h2": "What does a weak brief cost you?",
+      "body": [
+        "A common way it goes wrong: the brief lists deliverables and a live date but says nothing about usage. The reel does well, the brand now wants it in paid media, and the terms get negotiated after the content exists and the media plan is booked.",
+        "Another common one: two approvers. The first signs off the concept, the second appears after the shoot with a mandatory product claim that changes the opening line. Both are brief problems rather than creator problems, and both are cheap to prevent on paper."
+      ]
+    },
+    {
+      "h2": "How do you write the usage and rights section?",
+      "body": [
+        "Separate three things, because they are three different permissions. An organic post lives on the creator's account. Paid usage lets you run the asset in your own ads, and needs a stated window in months plus a stated list of placements. Whitelisting, sometimes called a partnership ad, lets you run it from the creator's handle, which needs its own permission and its own window.",
+        "Add exclusivity only if you need it, and name the category and the number of months you want held. These are quoted separately, so defining them in the brief is also how you get a quote you can compare."
+      ]
+    },
+    {
+      "h2": "What does a tight brief produce?",
+      "body": [
+        "Two examples from our roster, both organic, neither boosted. One reel made for a design software brand and aimed at architecture students reached over 490,000 views with 29,000 saves, and brought in more than 100 paid sign-ups. A second reel, a list of five tools for architecture students, reached 161,000 views and 11,000 saves, and produced 25 sign-ups for a mobile app.",
+        "A global footwear brand commissioned a green-screen concept film from a single creative who took it from idea to final composite, then booked a second one. In each case the scope was narrow: one audience, one message, one deliverable.",
+        "MANA agrees deliverables, usage and dates in writing before filming starts, and sends the creator's media kit with audience data so a brief can be aimed at a real audience rather than a guess. If you already have a draft, test it by handing it to someone who has never seen your product and asking what the reel is about. If they cannot answer in one sentence, the message is not one message yet."
+      ]
+    }
+  ],
+  "faq": [
+    [
+      "How long should a creator brief be?",
+      "One page. If it runs longer, it is usually carrying brand guidelines that belong in an attachment, or approvals that belong in an email."
+    ],
+    [
+      "Should the brief include a script?",
+      "No. Include the one message, any line you need said, the claims that are off limits, and the deliverables. The hook, the edit and the setting are the creator's job, and that is what the audience is watching for."
+    ],
+    [
+      "What if we need changes after the content is filmed?",
+      "Set the number of revision rounds in the brief and name the single approver who signs off. Changes that arrive from a second approver after the shoot are the most expensive kind, and they are the easiest to avoid."
+    ]
+  ],
+  "related": [
+    "/creators",
+    "/brands"
+  ]
+}
