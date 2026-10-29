@@ -91,7 +91,7 @@ CREATORS = [
 ]
 
 HOME = {
-    "title": "MANA | Influencer and content creator management, Melbourne, Australia",
+    "title": "MANA | Influencer and talent management agency, Melbourne",
     "description": ("MANA is a Melbourne influencer and talent management agency. We represent Australian content creators "
                     "Hugo Zbor, Kevin Chiang and Preston Young and run brand partnerships end to end."),
     "eyebrow": "Influencer and talent management · Based in Australia, working globally",
@@ -207,7 +207,7 @@ FOOTER = [
 
 PROFILES = {
     "hugo": {
-        "title": "Hugo Zbor | Melbourne creative director and content creator | MANA",
+        "title": "Hugo Zbor | Creative director and content creator | MANA",
         "description": ("Hugo Zbor is a Melbourne creative director known for green-screen concept films for Converse, ASICS "
                         "and Named Collective. Managed by MANA. Get his media kit."),
         "eyebrow": "Creative direction, green-screen and 3D · Melbourne",
@@ -235,11 +235,11 @@ PROFILES = {
             ("Which brands has Hugo Zbor worked with?", "Converse (twice), ASICS, Named Collective, Starface, Meliora, Lowheads, "
              "Good Optiks, Ultralight LDN and 8illy, plus independent labels and artists."),
             ("How do I book Hugo Zbor?", "Ask MANA for his media kit using the form below or at shei@manacreators.com. "
-             "Every project is scoped to the brief and quoted for your exact deliverables."),
+             "Every project is scoped to the brief and quoted for your exact deliverables. Before you send a brief, see [what to put in a creator brief](/journal/how-to-brief-a-creator)."),
         ],
     },
     "kevin": {
-        "title": "Kevin Chiang | Architecture and design content creator, Melbourne | MANA",
+        "title": "Kevin Chiang | Architecture and design creator | MANA",
         "description": ("Kevin Chiang is a Melbourne architecture and design creator with 928K+ monthly views, 92% from non-followers. "
                         "One reel drove 100+ paid sign-ups for Suapp. Managed by MANA."),
         "eyebrow": "Architecture, design and lifestyle · Melbourne",
@@ -266,11 +266,11 @@ PROFILES = {
             ("Does Kevin Chiang's content drive sign-ups?", "Yes. One organic reel for Suapp drove 100+ paid sign-ups, and a "
              "branded reel on architecture tools drove 25 app sign-ups."),
             ("How do I book Kevin Chiang?", "Ask MANA for his media kit using the form below or at shei@manacreators.com. "
-             "Rates are quoted for your exact deliverables."),
+             "Rates are quoted for your exact deliverables. Before you send a brief, see [how to brief a creator](/journal/how-to-brief-a-creator)."),
         ],
     },
     "preston": {
-        "title": "Preston Young | Lifestyle and self-growth creator, Melbourne | MANA",
+        "title": "Preston Young | Lifestyle and self-growth creator | MANA",
         "description": ("Preston Young is a Melbourne lifestyle and self-growth creator: 1.86M views and 1.09M unique viewers in "
                         "90 days, and a 2.9M-view reel. Managed by MANA."),
         "eyebrow": "Life lessons, lifestyle and self-growth · Melbourne",
@@ -296,13 +296,13 @@ PROFILES = {
             ("What does Preston Young make for brands?", "Sponsored reels, whitelisting, UGC, affiliate and ambassador "
              "partnerships, and product reviews, in the same cinematic, story-led style as his own reels."),
             ("How do I book Preston Young?", "Ask MANA for his media kit using the form below or at shei@manacreators.com. "
-             "Rates are quoted for your exact deliverables."),
+             "Rates are quoted for your exact deliverables. Before you send a brief, see [what a creator brief should contain](/journal/how-to-brief-a-creator)."),
         ],
     },
 }
 
 CREATORS_PAGE = {
-    "title": "Australian content creators and influencers | MANA talent management",
+    "title": "Content creators in Australia for hire | MANA",
     "description": ("Meet the Melbourne-based content creators MANA represents: Hugo Zbor, Kevin Chiang and Preston Young. "
                     "Audiences, results and brands, plus media kits on request."),
     "eyebrow": "Creators",
@@ -323,7 +323,7 @@ CREATORS_PAGE = {
 }
 
 BRANDS_PAGE = {
-    "title": "Hire Australian content creators for your brand | MANA",
+    "title": "Hire content creators in Australia | MANA",
     "description": ("Work with Melbourne content creators through MANA: creator matching, scope, contracts and usage rights, "
                     "production and posting, handled by one point of contact."),
     "eyebrow": "For brands",
@@ -348,13 +348,16 @@ BRANDS_PAGE = {
         ("Do you work with brands outside Australia?", "Yes. Our creators have made work for brands in Australia, the US, the UK and "
          "Europe, including Converse, ASICS, Ultrahuman and D5 Render."),
         ("Can your creators make content for our ads?", "Yes. They make UGC for brand channels and can license organic posts for "
-         "paid use or whitelisting. See UGC creators in Australia."),
+         "paid use or whitelisting. See [UGC creators in Australia](/ugc-creators-australia) and "
+         "[usage rights and whitelisting, explained](/journal/usage-rights-and-whitelisting-explained-for-brands)."),
+        ("What should a creator brief include?", "The message, the deliverables, usage rights, dates, the claims you cannot make "
+         "and one approver, all in writing before anything is filmed. Our guide: [how to brief a creator](/journal/how-to-brief-a-creator)."),
         ("How quickly do you reply?", "Usually within a day. Every brief gets a real answer, including when none of our creators fit."),
     ],
 }
 
 UGC_PAGE = {
-    "title": "UGC creators in Australia | MANA talent management",
+    "title": "UGC creators in Australia | MANA",
     "description": ("MANA represents Melbourne UGC creators who make videos for your brand's channels and ads, with usage rights "
                     "agreed up front. Kevin Chiang, Preston Young and Hugo Zbor."),
     "eyebrow": "UGC creators · Australia",
@@ -379,14 +382,15 @@ UGC_PAGE = {
         ("What is UGC?", "User-generated content: photos or videos a creator makes for a brand to use on its own channels or in ads. "
          "It looks native to social feeds because a real creator makes it."),
         ("How are usage rights handled for UGC?", "The usage period (for example 3, 6 or 12 months), the channels and whether it runs "
-         "as paid ads are agreed in writing before filming."),
+         "as paid ads are agreed in writing before filming. Full guide: [usage rights and whitelisting, explained for brands]"
+         "(/journal/usage-rights-and-whitelisting-explained-for-brands)."),
         ("Can I get raw footage?", "Yes. Kevin Chiang delivers raw footage or fully edited reels, and Preston Young offers UGC "
          "in his cinematic style."),
     ],
 }
 
 ABOUT_PAGE = {
-    "title": "About MANA | Influencer and talent management agency, Melbourne",
+    "title": "About MANA | Talent management agency, Melbourne",
     "description": ("MANA is an influencer and talent management agency in Melbourne, Australia, started in April 2026. A small roster, "
                     "one point of contact, and everything agreed in writing."),
     "eyebrow": "About",
@@ -407,7 +411,7 @@ ABOUT_PAGE = {
 }
 
 CONTACT_PAGE = {
-    "title": "Contact MANA | Melbourne influencer and talent management agency",
+    "title": "Contact MANA | Melbourne talent management agency",
     "description": ("Contact MANA in Melbourne, Australia: shei@manacreators.com. Run by founder Sheik Anam Milfer. "
                     "Media kits, briefs and creator applications, usually answered within a day."),
     "eyebrow": "Contact",

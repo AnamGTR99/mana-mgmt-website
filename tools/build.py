@@ -6,7 +6,7 @@ Content lives in tools/content.py. Design follows MANA (SOP) Design Rules (22 Oc
 neutral page, MANA blue #002FA7 at about 10%, Archivo, sentence case, AA contrast.
 Never hand-edit public/; change this file or content.py and rebuild.
 """
-import datetime, html, json, pathlib, shutil, sys
+import datetime, html, json, pathlib, re, shutil, sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tools"))
@@ -444,10 +444,35 @@ def crumbs(trail):
     return html, ld
 
 
+LINK = re.compile(r"\[([^\]]+)\]\((/[^)\s]*)\)")
+
+
+def md_links(text):
+    """Escape text, then turn [anchor](/path) into in-body links (call A, Anam 30 Oct 2026). Only site-relative paths."""
+    return LINK.sub(lambda m: '<a href="%s">%s</a>' % (m.group(2), m.group(1)), e(text))
+
+
+def plain(text):
+    """The same text without link markup, for schema and meta."""
+    return LINK.sub(lambda m: m.group(1), text)
+
+
+def page_titles():
+    t = {"/": "Home", "/creators": C.CREATORS_PAGE["h1"], "/brands": C.BRANDS_PAGE["h1"], "/ugc-creators-australia": C.UGC_PAGE["h1"],
+         "/about": C.ABOUT_PAGE["h1"], "/contact": C.CONTACT_PAGE["h1"]}
+    for cr in C.CREATORS:
+        t["/creators/" + cr["slug"]] = cr["name"]
+    import glob as _g
+    for f in _g.glob(str(ROOT / "content/pages/*.json")):
+        a = json.load(open(f))
+        t["/%s/%s" % ("journal" if a.get("kind", "journal") == "journal" else "work", a["slug"])] = a["h1"]
+    return t
+
+
 def faq_block(items, title="Questions"):
     html = '<section class="pg-sec"><div class="wrap"><h2>%s</h2><div class="faq">%s</div></div></section>' % (
-        e(title), "".join("<details><summary>%s</summary><p>%s</p></details>" % (e(q), e(a)) for q, a in items))
-    ld = {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in items]}
+        e(title), "".join("<details><summary>%s</summary><p>%s</p></details>" % (e(q), md_links(a)) for q, a in items))
+    ld = {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": plain(a)}} for q, a in items]}
     return html, ld
 
 
@@ -611,14 +636,15 @@ def article_pages():
         hero, cld = page_hero([("Home", "/"), (crumb_name, base), (a["h1"], path)], a.get("eyebrow", crumb_name), a["h1"], a["lede"])
         secs = []
         for sec in a.get("sections", []):
-            html = "<h2>%s</h2>" % e(sec["h2"]) + "".join("<p>%s</p>" % e(p) for p in sec.get("body", []))
+            html = "<h2>%s</h2>" % e(sec["h2"]) + "".join("<p>%s</p>" % md_links(p) for p in sec.get("body", []))
             if sec.get("bullets"):
-                html += '<ul class="hl">%s</ul>' % "".join("<li>%s</li>" % e(x) for x in sec["bullets"])
+                html += '<ul class="hl">%s</ul>' % "".join("<li>%s</li>" % md_links(x) for x in sec["bullets"])
             secs.append(html)
         rel = ""
         if a.get("related"):
+            titles = page_titles()
             rel = '<p class="k" style="margin-top:32px">Related: %s</p>' % " · ".join(
-                '<a href="%s">%s</a>' % (p, e(p.strip("/").split("/")[-1].replace("-", " ").capitalize() or "Home")) for p in a["related"])
+                '<a href="%s">%s</a>' % (p, e(titles.get(p) or p.strip("/").split("/")[-1].replace("-", " ").capitalize() or "Home")) for p in a["related"])
         date = a.get("date", TODAY)
         fq, fld = faq_block(a["faq"]) if a.get("faq") else ("", None)
         body = hero + '<section class="pg-sec" style="padding-top:0"><div class="wrap"><article class="prose"><p class="k">By <a href="/about#shei">%s</a>, %s · Published %s</p>%s%s%s</article></div></section>%s' % (
