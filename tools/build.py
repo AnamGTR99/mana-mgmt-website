@@ -270,7 +270,7 @@ def footer():
             '<a href="%s"%s>%s</a>' % (h, ' rel="noopener"' if h.startswith("http") else "", e(t)) for t, h in items)))
     return """<footer class="ft"><div class="wrap">
 <div class="top"><div>{lk}<p class="blurb">{blurb}</p></div><div class="cols">{cols}</div></div>
-<div class="bot"><span>© {y} MANA · Melbourne, Australia</span><span>shei@manacreators.com</span></div>
+<div class="bot"><span>© {y} MANA · Melbourne, Australia · Run by Sheik Anam Milfer</span><span>shei@manacreators.com</span></div>
 </div></footer>
 <script src="/assets/site.js" defer></script>
 <script>window.va=window.va||function(){{(window.vaq=window.vaq||[]).push(arguments)}};</script>
@@ -367,9 +367,27 @@ def org():
         "description": C.ORG_DESCRIPTION, "email": "shei@manacreators.com", "foundingLocation": "Melbourne, Australia",
         "address": {"@type": "PostalAddress", "addressLocality": "Melbourne", "addressRegion": "VIC", "addressCountry": "AU"},
         "areaServed": ["Australia", "United States", "United Kingdom", "Worldwide"],
-        "knowsAbout": C.KNOWS_ABOUT, "sameAs": C.ORG_SAMEAS,
-        "contactPoint": {"@type": "ContactPoint", "contactType": "sales", "email": "shei@manacreators.com", "areaServed": "Worldwide", "availableLanguage": "English"},
+        "knowsAbout": C.KNOWS_ABOUT, "sameAs": C.ORG_SAMEAS, "foundingDate": C.COMPANY["founded"],
+        "founder": {"@id": SITE + "/about#shei"},
+        "contactPoint": {"@type": "ContactPoint", "contactType": "sales", "email": "shei@manacreators.com",
+                         "areaServed": "Worldwide", "availableLanguage": "English", "url": SITE + "/contact"},
     }
+
+
+def founder():
+    f = C.FOUNDER
+    return {"@type": "Person", "@id": SITE + "/about#shei", "name": f["name"], "alternateName": f["short"], "jobTitle": f["job_title"],
+            "description": " ".join(f["bio"]), "image": SITE + f["photo"], "url": SITE + "/about",
+            "homeLocation": {"@type": "Place", "name": "Melbourne, Australia"}, "knowsAbout": f["knows_about"],
+            "sameAs": [u for _, u in f["links"]], "worksFor": {"@id": SITE + "/#org"}, "affiliation": {"@id": SITE + "/#org"}}
+
+
+def author_box():
+    f = C.FOUNDER
+    links = " · ".join('<a href="%s" rel="noopener">%s</a>' % (u, e(t)) for t, u in f["links"])
+    return ('<aside class="author" aria-label="About the author"><img src="%s" alt="%s" width="72" height="90" loading="lazy">'
+            '<div><p class="k">Written by</p><p><b><a href="/about#shei">%s (%s)</a></b>, %s</p><p class="sub">%s</p><p class="k">%s</p></div></aside>') % (
+        f["photo"], e(f["photo_alt"]), e(f["short"]), e(f["name"]), e(f["job_title"].lower()), e(f["one_line"]), links)
 
 
 def person(c):
@@ -547,14 +565,35 @@ def ugc_page():
 
 
 def about_page():
-    d = C.ABOUT_PAGE
+    d, f = C.ABOUT_PAGE, C.FOUNDER
     hero, cld = page_hero([("Home", "/"), ("About", "/about")], d["eyebrow"], d["h1"], d["lede"])
     pts = "".join('<div class="st"><h3>%s</h3><p>%s</p></div>' % (e(t), e(b)) for t, b in d["points"])
+    bio = "".join("<p>%s</p>" % e(p) for p in f["bio"])
+    links = "".join('<a class="btn btn-s btn-sm" href="%s" rel="noopener">%s</a>' % (u, e(t)) for t, u in f["links"])
+    who = ('<section class="pg-sec" id="shei"><div class="wrap pg-two who"><div class="pg-photo"><img src="%s" alt="%s" width="800" height="1000" loading="lazy"></div>'
+           '<div><h2>%s</h2><p class="k">%s · %s</p><div class="prose">%s</div><div class="cta">%s</div></div></div></section>') % (
+        f["photo"], e(f["photo_alt"]), e(d["who_h"]), e(f["name"]), e(f["job_title"]), bio, links)
     fq, fld = faq_block(d["faq"])
-    body = hero + '<section class="pg-sec" style="padding-top:0"><div class="wrap"><h2>How we work</h2><div class="steps nonum" style="margin-top:32px">%s</div></div></section>%s' % (
+    body = hero + who + '<section class="pg-sec" style="padding-top:0"><div class="wrap"><h2>How we work</h2><div class="steps nonum" style="margin-top:32px">%s</div></div></section>%s' % (
         pts, fq) + contact_section("Work with us", "Ask for a media kit or send a brief. We usually reply within a day.")
-    about = {"@type": "AboutPage", "@id": SITE + "/about#about", "url": SITE + "/about", "about": {"@id": SITE + "/#org"}}
-    write_page("/about", d["title"], d["description"], body, [about, cld, fld], priority="0.6")
+    about = {"@type": "AboutPage", "@id": SITE + "/about#about", "url": SITE + "/about", "about": {"@id": SITE + "/#org"},
+             "mainEntity": {"@id": SITE + "/#org"}}
+    write_page("/about", d["title"], d["description"], body, [about, founder(), cld, fld], priority="0.6")
+
+
+def contact_page():
+    d = C.CONTACT_PAGE
+    hero, cld = page_hero([("Home", "/"), ("Contact", "/contact")], d["eyebrow"], d["h1"], d["lede"])
+    facts = "".join("<div><dt>%s</dt><dd>%s</dd></div>" % (e(k), ('<a href="%s"%s>%s</a>' % (u, "" if u.startswith("/") or u.startswith("mailto") or u.startswith("tel") else ' rel="noopener"', e(v))) if u else e(v))
+                    for k, v, u in d["facts"])
+    legal = "".join("<p>%s</p>" % e(p) for p in d["legal"])
+    body = hero + """<section class="pg-sec" style="padding-top:0"><div class="wrap pg-two">
+<div><h2>Details</h2><dl class="facts">{facts}</dl></div>
+<div><h2>{lh}</h2><div class="prose">{legal}</div></div>
+</div></section>""".format(facts=facts, lh=e(d["legal_h"]), legal=legal) + contact_section(
+        "Send a message", "A brief, a media kit request or a creator application. We usually reply within a day.")
+    contact = {"@type": "ContactPage", "@id": SITE + "/contact#contact", "url": SITE + "/contact", "about": {"@id": SITE + "/#org"}}
+    write_page("/contact", d["title"], d["description"], body, [contact, founder(), cld], priority="0.5")
 
 
 def article_pages():
@@ -582,12 +621,12 @@ def article_pages():
                 '<a href="%s">%s</a>' % (p, e(p.strip("/").split("/")[-1].replace("-", " ").capitalize() or "Home")) for p in a["related"])
         date = a.get("date", TODAY)
         fq, fld = faq_block(a["faq"]) if a.get("faq") else ("", None)
-        body = hero + '<section class="pg-sec" style="padding-top:0"><div class="wrap"><article class="prose"><p class="k">Published %s · MANA</p>%s%s</article></div></section>%s' % (
-            e(date), "".join(secs), rel, fq) + contact_section()
+        body = hero + '<section class="pg-sec" style="padding-top:0"><div class="wrap"><article class="prose"><p class="k">By <a href="/about#shei">%s</a>, %s · Published %s</p>%s%s%s</article></div></section>%s' % (
+            e(C.FOUNDER["short"]), e(C.FOUNDER["job_title"].lower()), e(date), "".join(secs), rel, author_box(), fq) + contact_section()
         art = {"@type": "Article" if kind == "work" else "BlogPosting", "headline": a["h1"], "description": a["description"],
-               "datePublished": date, "dateModified": a.get("updated", date), "author": {"@id": SITE + "/#org"},
+               "datePublished": date, "dateModified": a.get("updated", date), "author": {"@id": SITE + "/about#shei"},
                "publisher": {"@id": SITE + "/#org"}, "mainEntityOfPage": SITE + path}
-        write_page(path, a["title"], a["description"], body, [art, cld] + ([fld] if fld else []), priority="0.7")
+        write_page(path, a["title"], a["description"], body, [art, founder(), cld] + ([fld] if fld else []), priority="0.7")
         items.append((kind, path, a))
     for kind, base, label, h1 in (("journal", "/journal", "Journal", "Journal"), ("work", "/work", "Work", "Work")):
         mine = [(p, a) for k, p, a in items if k == kind]
@@ -609,6 +648,7 @@ def build_pages():
     brands_page()
     ugc_page()
     about_page()
+    contact_page()
     article_pages()
 
 
@@ -657,6 +697,17 @@ ul.list b{font-size:20px}
 .tbl thead th{font-size:13px;color:var(--label);font-weight:600}
 .tbl tbody th{font-weight:600}.tbl tr:last-child th,.tbl tr:last-child td{border-bottom:0}
 .steps.nonum .st::before{content:none}
+/* the person behind the site */
+.who{align-items:center}
+.who .pg-photo{max-width:420px}
+.who .prose{margin-top:16px}
+.who .cta{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.author{display:flex;gap:20px;align-items:flex-start;margin-top:48px;padding:24px;background:var(--card);border:1px solid var(--line);border-radius:var(--r)}
+.author img{width:72px;height:90px;border-radius:8px;object-fit:cover;flex:none}
+.author p{margin:0 0 4px;color:var(--text)}
+.author p.sub{color:var(--text-2);font-size:15px}
+.author a{color:var(--text)}
+@media(max-width:520px){.author{flex-direction:column}}
 @media(max-width:900px){.pg-grid,.pg-two{grid-template-columns:minmax(0,1fr);gap:32px}.pg-photo{max-width:360px}.gal{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:520px){.facts div{grid-template-columns:minmax(0,1fr);gap:4px}.facts.wide div{grid-template-columns:minmax(0,1fr)}}
 """
@@ -692,8 +743,12 @@ def llms():
     for w in C.WORK:
         lines.append("- %s, %s: %s (%s)" % (w["title"], w["who"], w["body"], ", ".join(w["chips"])))
     lines += ["", "## Pages", "- Creators: %s/creators" % SITE] + ["- %s: %s/creators/%s" % (c["name"], SITE, c["slug"]) for c in C.CREATORS] + [
-        "- For brands: %s/brands" % SITE, "- UGC creators in Australia: %s/ugc-creators-australia" % SITE, "- About: %s/about" % SITE]
-    lines += ["", "## Contact", "- Email: shei@manacreators.com", "- Media kit or brief: %s/#contact" % SITE,
+        "- For brands: %s/brands" % SITE, "- UGC creators in Australia: %s/ugc-creators-australia" % SITE, "- About: %s/about" % SITE,
+        "- Contact: %s/contact" % SITE]
+    f = C.FOUNDER
+    lines += ["", "## Who runs MANA", "- %s (%s), %s. %s" % (f["name"], f["short"], f["job_title"].lower(), " ".join(f["bio"]))]
+    lines += ["- " + " · ".join("%s: %s" % (t, u) for t, u in f["links"])]
+    lines += ["", "## Contact", "- Email: shei@manacreators.com",               "- Based in: Melbourne, Victoria, Australia", "- Media kit or brief: %s/#contact" % SITE,
               "- Instagram: https://www.instagram.com/manamgmt/", ""]
     return "\n".join(lines)
 

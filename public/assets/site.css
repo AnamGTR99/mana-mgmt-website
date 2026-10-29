@@ -193,5 +193,16 @@ ul.list b{font-size:20px}
 .tbl thead th{font-size:13px;color:var(--label);font-weight:600}
 .tbl tbody th{font-weight:600}.tbl tr:last-child th,.tbl tr:last-child td{border-bottom:0}
 .steps.nonum .st::before{content:none}
+/* the person behind the site */
+.who{align-items:center}
+.who .pg-photo{max-width:420px}
+.who .prose{margin-top:16px}
+.who .cta{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.author{display:flex;gap:20px;align-items:flex-start;margin-top:48px;padding:24px;background:var(--card);border:1px solid var(--line);border-radius:var(--r)}
+.author img{width:72px;height:90px;border-radius:8px;object-fit:cover;flex:none}
+.author p{margin:0 0 4px;color:var(--text)}
+.author p.sub{color:var(--text-2);font-size:15px}
+.author a{color:var(--text)}
+@media(max-width:520px){.author{flex-direction:column}}
 @media(max-width:900px){.pg-grid,.pg-two{grid-template-columns:minmax(0,1fr);gap:32px}.pg-photo{max-width:360px}.gal{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:520px){.facts div{grid-template-columns:minmax(0,1fr);gap:4px}.facts.wide div{grid-template-columns:minmax(0,1fr)}}

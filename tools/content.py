@@ -13,6 +13,35 @@ KNOWS_ABOUT = ["Talent management", "Creator management", "Influencer marketing"
 
 ORG_SAMEAS = ["https://www.instagram.com/manamgmt/"]
 
+# Consistency card (29 Oct 2026): the same strings wherever MANA is listed, on this site or elsewhere.
+COMPANY = {
+    "name": "MANA", "locality": "Melbourne", "region": "VIC", "country": "Australia",
+    "email": "shei@manacreators.com",
+    "site": "https://www.mana-mgmt.com", "founded": "2026-04", "instagram": "https://www.instagram.com/manamgmt/",
+    "legal": ("MANA is the trading name of a talent management business run by Sheik Anam Milfer from Melbourne, "
+              "Victoria, Australia, since April 2026."),
+}
+
+# The person behind the site. Facts from Anam (anam.info/about, 30 Oct 2026). Nothing invented.
+FOUNDER = {
+    "name": "Sheik Anam Milfer", "short": "Shei", "slug": "shei",
+    "job_title": "Founder and talent manager",
+    "one_line": "Founder of MANA. Manages the roster and builds the agency\u2019s own tools.",
+    "bio": [
+        "MANA is run by Shei (Sheik Anam Milfer), who started it in Melbourne in April 2026 and manages the roster himself. "
+        "Born and raised in Hong Kong, based in Melbourne.",
+        "He is an engineer by training and builds the agency\u2019s own systems for briefs, deals and approvals. "
+        "That is why brands deal with one person from the first email to the final post, and why nothing a brand "
+        "agreed to gets lost between the brief and the live date.",
+    ],
+    "photo": "/assets/img/shei.webp",
+    "photo_alt": "Shei, founder of MANA, at a rooftop table in Melbourne at night",
+    "links": [("LinkedIn", "https://www.linkedin.com/in/sheik-anam-milfer-9aa15b213/"),
+              ("Instagram", "https://www.instagram.com/sheivault/"),
+              ("anam.info", "https://www.anam.info")],
+    "knows_about": ["Talent management", "Brand partnerships", "Creator contracts and usage rights", "Software engineering"],
+}
+
 NAV = [("/#creators", "Creators"), ("/#process", "For brands"), ("/#faq", "FAQ")]
 
 NEEDS = [
@@ -156,7 +185,8 @@ FOOTER_BLURB = ("Talent management for content creators. Based in Melbourne, wor
 FOOTER = [
     ("Creators", [("Hugo Zbor", "/#hugo-zbor"), ("Kevin Chiang", "/#kevin-chiang"), ("Preston Young", "/#preston-young")]),
     ("MANA", [("For brands", "/#process"), ("FAQ", "/#faq"), ("Get a media kit", "/#contact")]),
-    ("Contact", [("shei@manacreators.com", "mailto:shei@manacreators.com"), ("Instagram", "https://www.instagram.com/manamgmt/")]),
+    ("Contact", [("Contact and details", "/contact"), ("shei@manacreators.com", "mailto:shei@manacreators.com"),
+                 ("Instagram", "https://www.instagram.com/manamgmt/")]),
 ]
 
 
@@ -171,7 +201,8 @@ FOOTER = [
     ("Creators", [("All creators", "/creators"), ("Hugo Zbor", "/creators/hugo-zbor"), ("Kevin Chiang", "/creators/kevin-chiang"),
                   ("Preston Young", "/creators/preston-young")]),
     ("MANA", [("For brands", "/brands"), ("UGC creators", "/ugc-creators-australia"), ("About", "/about"), ("Get a media kit", "/#contact")]),
-    ("Contact", [("shei@manacreators.com", "mailto:shei@manacreators.com"), ("Instagram", "https://www.instagram.com/manamgmt/")]),
+    ("Contact", [("Contact and details", "/contact"), ("shei@manacreators.com", "mailto:shei@manacreators.com"),
+                 ("Instagram", "https://www.instagram.com/manamgmt/")]),
 ]
 
 PROFILES = {
@@ -356,20 +387,44 @@ UGC_PAGE = {
 
 ABOUT_PAGE = {
     "title": "About MANA | Influencer and talent management agency, Melbourne",
-    "description": ("MANA is an influencer and talent management agency in Melbourne, Australia, founded in 2025. A small roster, "
+    "description": ("MANA is an influencer and talent management agency in Melbourne, Australia, started in April 2026. A small roster, "
                     "one point of contact, and everything agreed in writing."),
     "eyebrow": "About",
     "h1": "About MANA.",
-    "lede": ("MANA is an influencer and talent management agency in Melbourne, Australia, founded in 2025. We represent content "
+    "lede": ("MANA is an influencer and talent management agency in Melbourne, Australia, started in April 2026. We represent content "
              "creators Hugo Zbor, Kevin Chiang and Preston Young and run their brand partnerships from brief to final post."),
+    "who_h": "Who runs MANA",
     "points": [("A small roster", "We take on a few creators at a time, so each one gets real management and every brand gets a fast answer."),
                ("One point of contact", "Brands deal with MANA from the first email to the final post. Creators get to create."),
                ("Everything in writing", "Deliverables, revisions, usage rights and dates are agreed before anything is filmed."),
                ("Built like a product", "MANA is run by an engineer, Shei, who builds the agency's own tools so no brief, date or approval gets lost.")],
     "faq": [
         ("Where is MANA based?", "Melbourne, Australia. We work with brands in Australia and around the world, mostly remotely."),
-        ("Who runs MANA?", "MANA is run by Shei, an engineer who manages the roster and builds the agency's own systems for "
-         "briefs, deals and approvals."),
+        ("Who runs MANA?", "MANA is run by its founder, Shei (Sheik Anam Milfer), an engineer who manages the roster and builds "
+         "the agency's own systems for briefs, deals and approvals. He is based in Melbourne."),
         ("How do I contact MANA?", "Use the form below or email shei@manacreators.com. We usually reply within a day."),
+    ],
+}
+
+CONTACT_PAGE = {
+    "title": "Contact MANA | Melbourne influencer and talent management agency",
+    "description": ("Contact MANA in Melbourne, Australia: shei@manacreators.com. Run by founder Sheik Anam Milfer. "
+                    "Media kits, briefs and creator applications, usually answered within a day."),
+    "eyebrow": "Contact",
+    "h1": "Contact MANA.",
+    "lede": ("One point of contact for media kits, briefs and creator applications. Email is fastest. We usually reply within "
+             "a day, Melbourne time."),
+    "facts": [("Email", "shei@manacreators.com", "mailto:shei@manacreators.com"),
+              ("Based in", "Melbourne, Victoria, Australia", None),
+              ("Instagram", "@manamgmt", "https://www.instagram.com/manamgmt/"),
+              ("Run by", "Sheik Anam Milfer (Shei), founder", "/about#shei")],
+    "legal_h": "Who you are dealing with",
+    "legal": [
+        "MANA is the trading name of a talent management business run by Sheik Anam Milfer from Melbourne, Victoria, "
+        "Australia, since April 2026.",
+        "MANA represents its creators under written management agreements and acts for them in brand partnerships. "
+        "Deliverables, usage rights, exclusivity and dates are agreed in writing before anything is filmed. Rates are "
+        "quoted for each scope and are not published.",
+        "The email address above is read by Shei. There is no info@ or hello@ inbox.",
     ],
 }
