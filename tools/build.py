@@ -287,7 +287,10 @@ def lead_form(need=None):
 <div class="field"><label for="f-email">Work email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
 </div>
 <div class="field"><label for="f-co">Brand or company <span>(or your @handle)</span></label><input id="f-co" name="company" autocomplete="organization"></div>
+<div class="row2">
 <div class="field"><label for="need">What do you need?</label><select id="need" name="need">{opts}</select></div>
+<div class="field"><label for="f-src">Where did you hear about us? <span>(optional)</span></label><select id="f-src" name="source"><option value="">Choose one</option><option>Google</option><option>ChatGPT or another AI</option><option>Instagram</option><option>LinkedIn</option><option>A referral</option><option>An email from us</option><option>Other</option></select></div>
+</div>
 <div class="field"><label for="f-msg">Brief, timing or budget <span>(optional)</span></label><textarea id="f-msg" name="message" placeholder="Product, what you want made, and when it should go live."></textarea></div>
 <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
 <button class="btn btn-p" type="submit">Send</button>
