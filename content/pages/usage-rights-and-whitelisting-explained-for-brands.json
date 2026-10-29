@@ -1,0 +1,83 @@
+{
+  "slug": "usage-rights-and-whitelisting-explained-for-brands",
+  "kind": "journal",
+  "title": "Usage rights and whitelisting, explained | MANA",
+  "description": "Usage rights licence a creator's content beyond their own feed. Whitelisting lets a brand run ads from the creator's handle. What to scope, in writing.",
+  "h1": "Usage rights and whitelisting, explained for brands",
+  "eyebrow": "Journal · Scoping and usage",
+  "lede": "Usage rights are written permission to use a creator's content somewhere other than the creator's own channels, for a named period. Whitelisting goes further: the creator permits the brand to run ads from the creator's handle, so the ad carries the creator's name and face rather than the brand's.",
+  "date": "2026-10-28",
+  "sections": [
+    {
+      "h2": "What do usage rights actually cover?",
+      "body": [
+        "Three things: where the content can run, for how long, and in what form. A sponsored reel is licensed for the creator's feed by default. The brand's own organic channels, paid ads, website, email and in-store screens are each a separate grant, and so is the right to re-cut, crop, subtitle or re-voice the file.",
+        "Duration is normally agreed in blocks of three, six or twelve months, counted from the live date. Category exclusivity is a different thing again. It stops the creator working with your competitors for an agreed window, and it should be written as its own clause rather than assumed inside a usage term."
+      ]
+    },
+    {
+      "h2": "How is whitelisting different from boosting or a partnership ad?",
+      "body": [
+        "Three distinct things get called the same thing in briefs, which is where most confusion starts.",
+        "Boosting puts brand spend behind the post as published. A partnership ad runs a post the creator actually posted, through the brand's ad account, with the creator credited and the brand controlling targeting. Whitelisting is broader: the brand gets permissioned access to build new ads from the creator's handle, including copy, crops and formats the creator never posted organically. A brand can also run a partnership ad on its own footage, which needs no creator asset at all.",
+        "Whitelisting is usually scoped in 30-day windows, so the end date matters as much as the start date."
+      ]
+    },
+    {
+      "h2": "When is whitelisting worth buying?",
+      "body": [
+        "When the creative has already proved it travels. Paid distribution multiplies a known result; it does not rescue an untested idea. The signal to look for is non-follower reach, because it shows the content is being pushed past the people who already follow the creator.",
+        "Two examples from MANA's roster. Kevin Chiang's Instagram reached 92% non-followers across 928K+ monthly views, with 40K average reel views and 359K unique viewers in 30 days. Preston Young averaged 81K views a reel with 86.6% non-follower reach, 1.86M views across 90 days, and six reels past 750K views in twelve months.",
+        "Organic can also carry a campaign on its own. One organic reel for a design software brand ran to 490K+ views, 17K likes, 29K saves and 12K comments, and produced 100+ paid sign-ups. No boost, no whitelisting. That is worth testing before you license anything."
+      ]
+    },
+    {
+      "h2": "What goes wrong when usage is not written down?",
+      "body": [
+        "A common way it goes wrong: the brief says one reel. Three months later the same file is running as a paid ad in a different market, re-cut to nine seconds, and the creator finds out by being served their own face. Nobody acted in bad faith. The scope simply never existed in writing.",
+        "A second common one: a 30-day whitelisting window closes and the ads keep running, because no one owned the switch-off. Retrofitting permission after an ad is live costs more time and goodwill than scoping it in the first email."
+      ]
+    },
+    {
+      "h2": "What should the agreement say before content goes live?",
+      "body": [
+        "Use this as a checklist when you send or review a brief."
+      ],
+      "bullets": [
+        "Deliverables listed one by one, including stories and any raw footage",
+        "Every place the content may run: creator's feed, brand organic channels, paid ads, website, email, in-store or out of home",
+        "Usage length, and the start date it runs from, usually the live date",
+        "Whether the brand may edit, re-cut, crop, subtitle or re-voice the content",
+        "Whether whitelisting is included, through which handle, and how long each window lasts",
+        "Who holds the ad account, who writes the ad copy, and who approves it",
+        "Whether category exclusivity applies, to which category, and for how long",
+        "What happens at the end: ads switched off, or usage renewed in writing",
+        "One named contact on each side for approvals and renewals"
+      ]
+    },
+    {
+      "h2": "How this gets handled",
+      "body": [
+        "MANA agrees deliverables, usage and dates in writing before anything is shot, then tracks the end dates and raises the renewal before a window closes. The brand gets one point of contact for approvals, and the creator never learns about a new placement from the ad itself."
+      ]
+    }
+  ],
+  "faq": [
+    [
+      "Do usage rights come with every sponsored post?",
+      "No. A sponsored post is licensed for the creator's own channels unless the agreement says otherwise. Anything beyond that, including your organic feed and paid ads, is a separate grant with a period attached to it."
+    ],
+    [
+      "How long should we license content for?",
+      "Match the term to the campaign. Three months covers a launch window; six or twelve suit always-on activity. A shorter term with a written option to renew is usually better than a long one you never use."
+    ],
+    [
+      "Can we whitelist a reel the creator has already posted?",
+      "Yes, if the agreement allows it and permission is granted before the ad runs. Agree the handle, the window length, who writes the copy and who approves it. Asking for permission after the ad is live is where disputes start."
+    ]
+  ],
+  "related": [
+    "/creators",
+    "/brands"
+  ]
+}
