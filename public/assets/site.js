@@ -14,11 +14,11 @@
       var r=await fetch('https://formspree.io/f/mvzekrgq',{method:'POST',body:data,headers:{'Accept':'application/json'}});
       if(!r.ok) throw new Error('send failed');
       form.reset(); st.className='status ok';
-      st.textContent='Thanks, it’s with us. You’ll get a reply from shei@mana-mgmt.com, usually within a day.';
+      st.textContent='Thanks, it’s with us. You’ll get a reply from shei@manacreators.com, usually within a day.';
       btn.textContent='Sent';
     }catch(err){
       st.className='status err';
-      st.textContent='That didn’t send. Please email shei@mana-mgmt.com directly.';
+      st.textContent='That didn’t send. Please email shei@manacreators.com directly.';
       btn.disabled=false; btn.textContent=t;
     }
   });

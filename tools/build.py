@@ -204,11 +204,11 @@ JS = r"""
       var r=await fetch('https://formspree.io/f/%(FS)s',{method:'POST',body:data,headers:{'Accept':'application/json'}});
       if(!r.ok) throw new Error('send failed');
       form.reset(); st.className='status ok';
-      st.textContent='Thanks, it’s with us. You’ll get a reply from shei@mana-mgmt.com, usually within a day.';
+      st.textContent='Thanks, it’s with us. You’ll get a reply from shei@manacreators.com, usually within a day.';
       btn.textContent='Sent';
     }catch(err){
       st.className='status err';
-      st.textContent='That didn’t send. Please email shei@mana-mgmt.com directly.';
+      st.textContent='That didn’t send. Please email shei@manacreators.com directly.';
       btn.disabled=false; btn.textContent=t;
     }
   });
@@ -270,7 +270,7 @@ def footer():
             '<a href="%s"%s>%s</a>' % (h, ' rel="noopener"' if h.startswith("http") else "", e(t)) for t, h in items)))
     return """<footer class="ft"><div class="wrap">
 <div class="top"><div>{lk}<p class="blurb">{blurb}</p></div><div class="cols">{cols}</div></div>
-<div class="bot"><span>© {y} MANA · Melbourne, Australia</span><span>shei@mana-mgmt.com</span></div>
+<div class="bot"><span>© {y} MANA · Melbourne, Australia</span><span>shei@manacreators.com</span></div>
 </div></footer>
 <script src="/assets/site.js" defer></script>
 <script>window.va=window.va||function(){{(window.vaq=window.vaq||[]).push(arguments)}};</script>
@@ -364,11 +364,11 @@ def org():
     return {
         "@type": "Organization", "@id": SITE + "/#org", "name": "MANA", "alternateName": ["MANA Talent Management", "MANA MGMT"],
         "url": SITE + "/", "logo": SITE + "/assets/brand/mana-logo-512.png", "image": SITE + "/assets/og/home.png",
-        "description": C.ORG_DESCRIPTION, "email": "shei@mana-mgmt.com", "foundingLocation": "Melbourne, Australia",
+        "description": C.ORG_DESCRIPTION, "email": "shei@manacreators.com", "foundingLocation": "Melbourne, Australia",
         "address": {"@type": "PostalAddress", "addressLocality": "Melbourne", "addressRegion": "VIC", "addressCountry": "AU"},
         "areaServed": ["Australia", "United States", "United Kingdom", "Worldwide"],
         "knowsAbout": C.KNOWS_ABOUT, "sameAs": C.ORG_SAMEAS,
-        "contactPoint": {"@type": "ContactPoint", "contactType": "sales", "email": "shei@mana-mgmt.com", "areaServed": "Worldwide", "availableLanguage": "English"},
+        "contactPoint": {"@type": "ContactPoint", "contactType": "sales", "email": "shei@manacreators.com", "areaServed": "Worldwide", "availableLanguage": "English"},
     }
 
 
@@ -410,7 +410,7 @@ PAGES = []  # (path, priority) for the sitemap, filled by build_pages()
 def contact_section(h2="Get a media kit", sub="We’ll reply with the media kit, usually within a day.", need=None):
     return """<section class="contact" id="contact"><div class="wrap">
 <div><h2>{h2}</h2><p class="sub">{sub}</p>
-<div class="direct"><a href="mailto:shei@mana-mgmt.com">shei@mana-mgmt.com</a><a href="https://www.instagram.com/manamgmt/" rel="noopener">@manamgmt on Instagram</a></div></div>
+<div class="direct"><a href="mailto:shei@manacreators.com">shei@manacreators.com</a><a href="https://www.instagram.com/manamgmt/" rel="noopener">@manamgmt on Instagram</a></div></div>
 {form}
 </div></section>
 """.format(h2=e(h2), sub=e(sub), form=lead_form(need))
@@ -693,7 +693,7 @@ def llms():
         lines.append("- %s, %s: %s (%s)" % (w["title"], w["who"], w["body"], ", ".join(w["chips"])))
     lines += ["", "## Pages", "- Creators: %s/creators" % SITE] + ["- %s: %s/creators/%s" % (c["name"], SITE, c["slug"]) for c in C.CREATORS] + [
         "- For brands: %s/brands" % SITE, "- UGC creators in Australia: %s/ugc-creators-australia" % SITE, "- About: %s/about" % SITE]
-    lines += ["", "## Contact", "- Email: shei@mana-mgmt.com", "- Media kit or brief: %s/#contact" % SITE,
+    lines += ["", "## Contact", "- Email: shei@manacreators.com", "- Media kit or brief: %s/#contact" % SITE,
               "- Instagram: https://www.instagram.com/manamgmt/", ""]
     return "\n".join(lines)
 

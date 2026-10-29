@@ -143,7 +143,7 @@ FAQ = [
      "Sponsored Instagram Reels, carousels and stories, UGC for your own channels, partnership ads and whitelisting, "
      "product reviews, and concept films with motion and 3D from Hugo Zbor."),
     ("How do I get a media kit or rates?",
-     "Use the form on this page or email shei@mana-mgmt.com. We send the creator’s media kit with audience data "
+     "Use the form on this page or email shei@manacreators.com. We send the creator’s media kit with audience data "
      "and campaign options, and quote rates for your exact scope. We don’t publish prices."),
     ("I’m a creator. How do I join MANA?",
      "Choose “I’m a creator looking for management” in the form with your handle and a line about your "
@@ -156,7 +156,7 @@ FOOTER_BLURB = ("Talent management for content creators. Based in Melbourne, wor
 FOOTER = [
     ("Creators", [("Hugo Zbor", "/#hugo-zbor"), ("Kevin Chiang", "/#kevin-chiang"), ("Preston Young", "/#preston-young")]),
     ("MANA", [("For brands", "/#process"), ("FAQ", "/#faq"), ("Get a media kit", "/#contact")]),
-    ("Contact", [("shei@mana-mgmt.com", "mailto:shei@mana-mgmt.com"), ("Instagram", "https://www.instagram.com/manamgmt/")]),
+    ("Contact", [("shei@manacreators.com", "mailto:shei@manacreators.com"), ("Instagram", "https://www.instagram.com/manamgmt/")]),
 ]
 
 
@@ -171,7 +171,7 @@ FOOTER = [
     ("Creators", [("All creators", "/creators"), ("Hugo Zbor", "/creators/hugo-zbor"), ("Kevin Chiang", "/creators/kevin-chiang"),
                   ("Preston Young", "/creators/preston-young")]),
     ("MANA", [("For brands", "/brands"), ("UGC creators", "/ugc-creators-australia"), ("About", "/about"), ("Get a media kit", "/#contact")]),
-    ("Contact", [("shei@mana-mgmt.com", "mailto:shei@mana-mgmt.com"), ("Instagram", "https://www.instagram.com/manamgmt/")]),
+    ("Contact", [("shei@manacreators.com", "mailto:shei@manacreators.com"), ("Instagram", "https://www.instagram.com/manamgmt/")]),
 ]
 
 PROFILES = {
@@ -203,7 +203,7 @@ PROFILES = {
              "such as cover art and magazines, and art-directed websites."),
             ("Which brands has Hugo Zbor worked with?", "Converse (twice), ASICS, Named Collective, Starface, Meliora, Lowheads, "
              "Good Optiks, Ultralight LDN and 8illy, plus independent labels and artists."),
-            ("How do I book Hugo Zbor?", "Ask MANA for his media kit using the form below or at shei@mana-mgmt.com. "
+            ("How do I book Hugo Zbor?", "Ask MANA for his media kit using the form below or at shei@manacreators.com. "
              "Every project is scoped to the brief and quoted for your exact deliverables."),
         ],
     },
@@ -234,7 +234,7 @@ PROFILES = {
              "split evenly between men and women, with India, Australia and the US as top markets."),
             ("Does Kevin Chiang's content drive sign-ups?", "Yes. One organic reel for Suapp drove 100+ paid sign-ups, and a "
              "branded reel on architecture tools drove 25 app sign-ups."),
-            ("How do I book Kevin Chiang?", "Ask MANA for his media kit using the form below or at shei@mana-mgmt.com. "
+            ("How do I book Kevin Chiang?", "Ask MANA for his media kit using the form below or at shei@manacreators.com. "
              "Rates are quoted for your exact deliverables."),
         ],
     },
@@ -264,7 +264,7 @@ PROFILES = {
              "are the United States, the Philippines and Indonesia."),
             ("What does Preston Young make for brands?", "Sponsored reels, whitelisting, UGC, affiliate and ambassador "
              "partnerships, and product reviews, in the same cinematic, story-led style as his own reels."),
-            ("How do I book Preston Young?", "Ask MANA for his media kit using the form below or at shei@mana-mgmt.com. "
+            ("How do I book Preston Young?", "Ask MANA for his media kit using the form below or at shei@manacreators.com. "
              "Rates are quoted for your exact deliverables."),
         ],
     },
@@ -370,6 +370,6 @@ ABOUT_PAGE = {
         ("Where is MANA based?", "Melbourne, Australia. We work with brands in Australia and around the world, mostly remotely."),
         ("Who runs MANA?", "MANA is run by Shei, an engineer who manages the roster and builds the agency's own systems for "
          "briefs, deals and approvals."),
-        ("How do I contact MANA?", "Use the form below or email shei@mana-mgmt.com. We usually reply within a day."),
+        ("How do I contact MANA?", "Use the form below or email shei@manacreators.com. We usually reply within a day."),
     ],
 }

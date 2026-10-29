@@ -16,6 +16,6 @@ cd public && python3 -m http.server 8765    # preview at http://localhost:8765
 ```
 
 Design follows the vault's `MANAMGMT/(SOP) Design Rules.md` (neutral, MANA blue about 10%, Archivo, sentence case); the logo follows `(SOP) Branding.md`.
-Leads come in through the form (Formspree `mvzekrgq`), which emails shei@mana-mgmt.com.
+Leads come in through the form (Formspree `mvzekrgq`), which emails shei@manacreators.com.
 
 Pushing to `main` deploys to production. Work on a branch; merge only on Anam's go.
