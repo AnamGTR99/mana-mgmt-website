@@ -261,6 +261,8 @@ PROFILES = {
         "gallery": [("work-kevin-reel.webp", "Branded reel", "5 tools you should know as an architecture student")],
         "fit": "Design and 3D software, apps and SaaS for students and creatives, tech, desk setups and lifestyle brands.",
         "faq": [
+            ("Is Kevin Chiang an architecture influencer?", "Yes. His reels cover architecture, design software, student life and desk setups for an "
+             "audience that is 88% aged 18 to 34. See [architecture and design influencers in Australia](/journal/architecture-and-design-influencers-australia)."),
             ("Who watches Kevin Chiang?", "Design students, young architects and creatives. 88% of his audience is aged 18 to 34, "
              "split evenly between men and women, with India, Australia and the US as top markets."),
             ("Does Kevin Chiang's content drive sign-ups?", "Yes. One organic reel for Suapp drove 100+ paid sign-ups, and a "
@@ -291,6 +293,8 @@ PROFILES = {
         "gallery": [],
         "fit": "Lifestyle, wellness, fitness, education and apps for young adults, especially brands reaching the US and Southeast Asia.",
         "faq": [
+            ("Is Preston Young a fitness influencer?", "Fitness is one of his pillars, alongside life lessons, self-growth, day in the life and student life, "
+             "for an audience that is 65% men. See [male lifestyle and fitness influencers in Australia](/journal/male-lifestyle-and-fitness-influencers-australia)."),
             ("Who watches Preston Young?", "Young adults: two in three viewers are aged 18 to 34, 65% are men, and the top markets "
              "are the United States, the Philippines and Indonesia."),
             ("What does Preston Young make for brands?", "Sponsored reels, whitelisting, UGC, affiliate and ambassador "
