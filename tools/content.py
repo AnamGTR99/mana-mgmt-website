@@ -11,7 +11,9 @@ ORG_DESCRIPTION = ("MANA is an influencer and talent management agency in Melbou
 KNOWS_ABOUT = ["Talent management", "Creator management", "Influencer marketing", "Brand partnerships",
                "UGC (user-generated content)", "Instagram Reels", "Usage rights and whitelisting"]
 
-ORG_SAMEAS = ["https://www.instagram.com/manamgmt/"]
+# Every official MANA profile, so Google and AI tools join them into one entity (Sarvesh prompt 18, 10 Nov 2026).
+# The LinkedIn company page stays out until it is renamed from SHEIMGMT to MANA: a mismatched name weakens the match.
+ORG_SAMEAS = ["https://www.instagram.com/manamgmt/", "https://x.com/manacreators", "https://www.youtube.com/@manacreatorstv"]
 
 # Consistency card (29 Oct 2026): the same strings wherever MANA is listed, on this site or elsewhere.
 COMPANY = {
