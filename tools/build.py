@@ -15,7 +15,7 @@ import content as C  # noqa: E402
 SRC, OUT = ROOT / "src", ROOT / "public"
 SITE = "https://www.mana-mgmt.com"
 TODAY = datetime.date.today().isoformat()
-FORMSPREE_ID = "mvzekrgq"
+LEAD_URL = "https://manacreators.com/site-lead"   # our own endpoint since 15 Nov 2026 (was Formspree mvzekrgq)
 e = html.escape
 
 MARK = (SRC / "assets/brand/mark-blue.svg").read_text()
@@ -198,11 +198,11 @@ JS = r"""
   form.addEventListener('submit',async function(ev){
     ev.preventDefault(); st.className='status';
     var data=new FormData(form); data.append('page',location.pathname);
-    data.append('_subject','Website lead: '+sel.options[sel.selectedIndex].text);
     btn.disabled=true; var t=btn.textContent; btn.textContent='Sending…';
     try{
-      var r=await fetch('https://formspree.io/f/%(FS)s',{method:'POST',body:data,headers:{'Accept':'application/json'}});
-      if(!r.ok) throw new Error('send failed');
+      var r=await fetch('%(URL)s',{method:'POST',body:new URLSearchParams(data),headers:{'Accept':'application/json'}});
+      var j=await r.json().catch(function(){return {};});
+      if(!r.ok||!j.ok) throw new Error(j.error||'send failed');
       form.reset(); st.className='status ok';
       st.textContent='Thanks, it’s with us. You’ll get a reply from shei@manacreators.com, usually within a day.';
       btn.textContent='Sent';
@@ -213,7 +213,7 @@ JS = r"""
     }
   });
 })();
-""" % {"FS": FORMSPREE_ID}
+""" % {"URL": LEAD_URL}
 
 
 def head(title, desc, path, jsonld=None, og_image="/assets/og/home.png"):

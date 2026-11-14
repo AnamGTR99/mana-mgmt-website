@@ -16,6 +16,6 @@ cd public && python3 -m http.server 8765    # preview at http://localhost:8765
 ```
 
 Design follows the vault's `MANAMGMT/(SOP) Design Rules.md` (neutral, MANA blue about 10%, Archivo, sentence case); the logo follows `(SOP) Branding.md`.
-Leads come in through the form (Formspree `mvzekrgq`), which emails shei@manacreators.com.
+Leads come in through the form, which posts to https://manacreators.com/site-lead (our own endpoint since 15 Nov 2026, was Formspree `mvzekrgq`): saved in the MANA Creators DB (`site_leads`), emailed to shei@manacreators.com with Reply-To set to the sender, and pinged to Anam on Telegram. Only mana-mgmt.com origins may post.
 
 Pushing to `main` deploys to production. Work on a branch; merge only on Anam's go.

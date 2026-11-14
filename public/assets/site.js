@@ -8,11 +8,11 @@
   form.addEventListener('submit',async function(ev){
     ev.preventDefault(); st.className='status';
     var data=new FormData(form); data.append('page',location.pathname);
-    data.append('_subject','Website lead: '+sel.options[sel.selectedIndex].text);
     btn.disabled=true; var t=btn.textContent; btn.textContent='Sending…';
     try{
-      var r=await fetch('https://formspree.io/f/mvzekrgq',{method:'POST',body:data,headers:{'Accept':'application/json'}});
-      if(!r.ok) throw new Error('send failed');
+      var r=await fetch('https://manacreators.com/site-lead',{method:'POST',body:new URLSearchParams(data),headers:{'Accept':'application/json'}});
+      var j=await r.json().catch(function(){return {};});
+      if(!r.ok||!j.ok) throw new Error(j.error||'send failed');
       form.reset(); st.className='status ok';
       st.textContent='Thanks, it’s with us. You’ll get a reply from shei@manacreators.com, usually within a day.';
       btn.textContent='Sent';
