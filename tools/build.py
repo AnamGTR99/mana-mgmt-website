@@ -371,6 +371,7 @@ def org():
         "address": {"@type": "PostalAddress", "addressLocality": "Melbourne", "addressRegion": "VIC", "addressCountry": "AU"},
         "areaServed": ["Australia", "United States", "United Kingdom", "Worldwide"],
         "knowsAbout": C.KNOWS_ABOUT, "sameAs": C.ORG_SAMEAS, "foundingDate": C.COMPANY["founded"],
+        "subOrganization": C.SISTER_ORG, "brand": {"@type": "Brand", "name": "MANA Creators", "url": "https://manacreators.com/"},
         "founder": {"@id": SITE + "/about#shei"},
         "contactPoint": {"@type": "ContactPoint", "contactType": "sales", "email": "shei@manacreators.com",
                          "areaServed": "Worldwide", "availableLanguage": "English", "url": SITE + "/contact"},
@@ -447,7 +448,7 @@ def crumbs(trail):
     return html, ld
 
 
-LINK = re.compile(r"\[([^\]]+)\]\((/[^)\s]*)\)")
+LINK = re.compile(r"\[([^\]]+)\]\((/[^)\s]*|https://manacreators\.com[^)\s]*)\)")  # + sister site (22 Nov 2026)
 
 
 def md_links(text):
@@ -564,8 +565,9 @@ def brands_page():
 <div><h2>{book_h}</h2><ul class="hl">{book}</ul></div>
 <div><h2>{wr_h}</h2><dl class="facts">{wr}</dl></div></div></section>
 <section class="pg-sec"><div class="wrap"><h2>How a campaign runs</h2><div class="steps" style="margin-top:32px">{steps}</div></div></section>
+<section class="pg-sec"><div class="wrap pg-two"><div><h2>{prog_h}</h2></div><div><p class="sub">{prog_p}</p><p style="margin-top:20px"><a class="btn btn-p" href="https://manacreators.com/">{prog_cta}</a> <a class="btn btn-s" href="https://manacreators.com/guides/">UGC guides</a></p></div></div></section>
 <section class="pg-sec"><div class="wrap"><h2>Brands our creators have worked with</h2><ul class="logo-grid">{logos}</ul></div></section>
-{fq}""".format(book_h=e(d["book_h"]), book=book, wr_h=e(d["writing_h"]), wr=wr, steps=steps, logos=logos, fq=fq) + contact_section(
+{fq}""".format(prog_h=e(d["programs_h"]), prog_p=md_links(d["programs_p"]), prog_cta=e(d["programs_cta"]), book_h=e(d["book_h"]), book=book, wr_h=e(d["writing_h"]), wr=wr, steps=steps, logos=logos, fq=fq) + contact_section(
         "Send a brief", "Or ask for the media kits. We usually reply within a day.")
     body = body.replace('<option value="brief">', '<option value="brief" selected>')
     svc = {"@type": "Service", "name": "Creator and influencer partnerships", "serviceType": "Influencer marketing and talent management",
@@ -650,6 +652,7 @@ def article_pages():
                 '<a href="%s">%s</a>' % (p, e(titles.get(p) or p.strip("/").split("/")[-1].replace("-", " ").capitalize() or "Home")) for p in a["related"])
         date = a.get("date", TODAY)
         fq, fld = faq_block(a["faq"]) if a.get("faq") else ("", None)
+        rel += C.SISTER_LINE_HTML
         body = hero + '<section class="pg-sec" style="padding-top:0"><div class="wrap"><article class="prose"><p class="k">By <a href="/about#shei">%s</a>, %s · Published %s</p>%s%s%s</article></div></section>%s' % (
             e(C.FOUNDER["short"]), e(C.FOUNDER["job_title"].lower()), e(date), "".join(secs), rel, author_box(), fq) + contact_section()
         art = {"@type": "Article" if kind == "work" else "BlogPosting", "headline": a["h1"], "description": a["description"],
@@ -775,6 +778,8 @@ def llms():
         "- For brands: %s/brands" % SITE, "- UGC creators in Australia: %s/ugc-creators-australia" % SITE, "- About: %s/about" % SITE,
         "- Contact: %s/contact" % SITE]
     f = C.FOUNDER
+    lines += ["", "## MANA Creators (managed UGC programs)", "- " + C.SISTER_ORG["description"] + " " + C.SISTER_ORG["url"],
+              "- Guides for brands buying UGC: https://manacreators.com/guides/"]
     lines += ["", "## Who runs MANA", "- %s (%s), %s. %s" % (f["name"], f["short"], f["job_title"].lower(), " ".join(f["bio"]))]
     lines += ["- " + " · ".join("%s: %s" % (t, u) for t, u in f["links"])]
     lines += ["", "## Contact", "- Email: shei@manacreators.com",               "- Based in: Melbourne, Victoria, Australia", "- Media kit or brief: %s/#contact" % SITE,

@@ -13,7 +13,18 @@ KNOWS_ABOUT = ["Talent management", "Creator management", "Influencer marketing"
 
 # Every official MANA profile, so Google and AI tools join them into one entity (Sarvesh prompt 18, 10 Nov 2026).
 # The LinkedIn company page stays out until it is renamed from SHEIMGMT to MANA: a mismatched name weakens the match.
-ORG_SAMEAS = ["https://www.instagram.com/manamgmt/", "https://x.com/manacreators", "https://www.youtube.com/@manacreatorstv"]
+ORG_SAMEAS = ["https://www.instagram.com/manamgmt/", "https://x.com/manacreators", "https://www.youtube.com/@manacreatorstv",
+              "https://manacreators.com/"]
+
+# 22 Nov 2026 (Anam via GROWTH): two sites, one company. mana-mgmt.com = talent management + Australia;
+# manacreators.com = MANA Creators, managed UGC programs for brands (US, UK, Australia).
+SISTER_ORG = {"@type": "Organization", "@id": "https://manacreators.com/#org", "name": "MANA Creators", "url": "https://manacreators.com/",
+              "description": "MANA Creators runs managed UGC programs for brands in the US, UK and Australia: brief, hand-picked "
+                             "creators, filming and revisions, a check on every cut, usage rights, ad codes and results per video.",
+              "parentOrganization": {"@id": "https://www.mana-mgmt.com/#org"}}
+SISTER_LINE_HTML = ('<p class="k" style="margin-top:28px">Need creator videos every month for ads? MANA runs managed UGC programs at '
+                    '<a href="https://manacreators.com/">MANA Creators</a>. Guides for brands: '
+                    '<a href="https://manacreators.com/guides/">manacreators.com/guides</a>.</p>')
 
 # Consistency card (29 Oct 2026): the same strings wherever MANA is listed, on this site or elsewhere.
 COMPANY = {
@@ -186,7 +197,7 @@ FOOTER_BLURB = ("Talent management for content creators. Based in Melbourne, wor
 
 FOOTER = [
     ("Creators", [("Hugo Zbor", "/#hugo-zbor"), ("Kevin Chiang", "/#kevin-chiang"), ("Preston Young", "/#preston-young")]),
-    ("MANA", [("For brands", "/#process"), ("FAQ", "/#faq"), ("Get a media kit", "/#contact")]),
+    ("MANA", [("For brands", "/#process"), ("Managed UGC programs", "https://manacreators.com/"), ("FAQ", "/#faq"), ("Get a media kit", "/#contact")]),
     ("Contact", [("Contact and details", "/contact"), ("shei@manacreators.com", "mailto:shei@manacreators.com"),
                  ("Instagram", "https://www.instagram.com/manamgmt/")]),
 ]
@@ -202,7 +213,7 @@ NAV = [("/creators", "Creators"), ("/brands", "For brands"), ("/ugc-creators-aus
 FOOTER = [
     ("Creators", [("All creators", "/creators"), ("Hugo Zbor", "/creators/hugo-zbor"), ("Kevin Chiang", "/creators/kevin-chiang"),
                   ("Preston Young", "/creators/preston-young")]),
-    ("MANA", [("For brands", "/brands"), ("UGC creators", "/ugc-creators-australia"), ("About", "/about"), ("Get a media kit", "/#contact")]),
+    ("MANA", [("For brands", "/brands"), ("UGC creators", "/ugc-creators-australia"), ("Managed UGC programs", "https://manacreators.com/"), ("About", "/about"), ("Get a media kit", "/#contact")]),
     ("Contact", [("Contact and details", "/contact"), ("shei@manacreators.com", "mailto:shei@manacreators.com"),
                  ("Instagram", "https://www.instagram.com/manamgmt/")]),
 ]
@@ -344,6 +355,11 @@ BRANDS_PAGE = {
               ("Get the media kit", "The creator who fits, their audience data and the options for your campaign."),
               ("Agree the scope", "Deliverables, revision rounds, usage period, whitelisting, exclusivity and the live date, in writing."),
               ("Content goes live", "Drafts land on the agreed dates and the post goes live on time.")],
+    "programs_h": "Need new ad creative every month?",
+    "programs_p": ("For brands that test creator videos in paid social every month, MANA runs managed UGC programs through "
+                   "MANA Creators: we write the brief, hand-pick creators, manage filming and revisions, check every cut, "
+                   "handle usage rights and ad codes, and report results per video. It starts with one pilot campaign."),
+    "programs_cta": "Managed UGC programs",
     "writing_h": "What we put in writing before anything is filmed",
     "writing": [("Deliverables", "Exactly what gets made, for which platform."), ("Revision rounds", "How many, and when they're due."),
                 ("Usage rights", "Where you can use the content, and for how long."), ("Whitelisting", "Whether you can run it as an ad from the creator's handle."),
@@ -392,6 +408,9 @@ UGC_PAGE = {
          "(/journal/usage-rights-and-whitelisting-explained-for-brands)."),
         ("Can I get raw footage?", "Yes. Kevin Chiang delivers raw footage or fully edited reels, and Preston Young offers UGC "
          "in his cinematic style."),
+        ("Can MANA run an ongoing UGC program for our ads?", "Yes. [MANA Creators](https://manacreators.com/) runs managed UGC "
+         "programs: a pilot campaign first, then a new round of videos each month built from the best performers, with usage "
+         "rights and ad codes handled. Guides for brands: [manacreators.com/guides](https://manacreators.com/guides/)."),
     ],
 }
 
